@@ -34,8 +34,9 @@ export default function RegisterView() {
       toast.error(`${error}`);
     },
     onSuccess: (data) => {
+      console.log("🚀 ~ RegisterView ~ data:", data);
       toast.success(data);
-      reset;
+      reset();
     },
   });
 
