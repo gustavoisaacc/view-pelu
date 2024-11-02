@@ -6,7 +6,7 @@ import { ConfirmToken } from "../../schema/auth";
 function NewPasswordView() {
   const [token, setToken] = useState<ConfirmToken["token"]>("");
   const [isValidateToken, setValidateToken] = useState(false);
-  console.log("🚀 ~ NewPasswordView ~ isValidateToken:", isValidateToken);
+
   return (
     <>
       <h1 className="text-4xl font-black text-white">Reestablecer Password</h1>
