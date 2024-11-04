@@ -5,6 +5,7 @@ import {
   ForgotPasswordForm,
   NewPasswordForm,
   RequestConfirmationCodeForm,
+  UserLoginForm,
   UserRegistrationForm,
 } from "../schema/auth";
 
@@ -74,6 +75,23 @@ export async function UpdatePassword({ formData, token }: UpdatePasswordProps) {
     return data.message;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.message);
+    }
+  }
+}
+
+export async function AuthtenticateUser(formData: UserLoginForm) {
+  try {
+    const { data } = await api.post("/auth/login", formData);
+    console.log("🚀 ~ AuthtenticateUser ~ data:", data);
+    localStorage.setItem("TOKEN", data.token);
+    return data;
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      console.log(
+        "🚀 ~ AuthtenticateUser ~ error.response.data:",
+        error.response.data
+      );
       throw new Error(error.response.data.message);
     }
   }
