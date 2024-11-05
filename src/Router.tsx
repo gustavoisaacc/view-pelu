@@ -16,7 +16,7 @@ function Router() {
     <BrowserRouter>
       <Routes>
         <Route element={<LayoutApp />}>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/category" element={<Categories />} />
           <Route path="/category/:categoryId" element={<Service />} />
         </Route>
@@ -34,6 +34,7 @@ function Router() {
           />
           <Route path="/auth/new-password" element={<NewPasswordView />} />
         </Route>
+        <Route path="*" element={<p>Not found</p>} />
       </Routes>
     </BrowserRouter>
   );

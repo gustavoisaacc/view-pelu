@@ -5,6 +5,7 @@ import {
   ForgotPasswordForm,
   NewPasswordForm,
   RequestConfirmationCodeForm,
+  User,
   UserLoginForm,
   UserRegistrationForm,
 } from "../schema/auth";
@@ -15,6 +16,10 @@ export async function createAccount(formData: UserRegistrationForm) {
     return data.message;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
+      console.log(
+        "🚀 ~ AuthtenticateUser ~ error.response.data:",
+        error.response.data
+      );
       throw new Error(error.response.data.message);
     }
   }
@@ -26,6 +31,10 @@ export async function ConfirmAccount(token: ConfirmToken) {
     return data.message;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
+      console.log(
+        "🚀 ~ AuthtenticateUser ~ error.response.data:",
+        error.response.data
+      );
       throw new Error(error.response.data.message);
     }
   }
@@ -37,6 +46,10 @@ export async function RequestNewCode(formData: RequestConfirmationCodeForm) {
     return data.message;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
+      console.log(
+        "🚀 ~ AuthtenticateUser ~ error.response.data:",
+        error.response.data
+      );
       throw new Error(error.response.data.message);
     }
   }
@@ -48,6 +61,10 @@ export async function ForgotPasswordReset(formData: ForgotPasswordForm) {
     return data.message;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
+      console.log(
+        "🚀 ~ AuthtenticateUser ~ error.response.data:",
+        error.response.data
+      );
       throw new Error(error.response.data.message);
     }
   }
@@ -59,6 +76,10 @@ export async function ValidateToken(formData: ConfirmToken) {
     return data.message;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
+      console.log(
+        "🚀 ~ AuthtenticateUser ~ error.response.data:",
+        error.response.data
+      );
       throw new Error(error.response.data.message);
     }
   }
@@ -75,6 +96,10 @@ export async function UpdatePassword({ formData, token }: UpdatePasswordProps) {
     return data.message;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
+      console.log(
+        "🚀 ~ AuthtenticateUser ~ error.response.data:",
+        error.response.data
+      );
       throw new Error(error.response.data.message);
     }
   }
@@ -83,8 +108,22 @@ export async function UpdatePassword({ formData, token }: UpdatePasswordProps) {
 export async function AuthtenticateUser(formData: UserLoginForm) {
   try {
     const { data } = await api.post("/auth/login", formData);
-    console.log("🚀 ~ AuthtenticateUser ~ data:", data);
     localStorage.setItem("TOKEN", data.token);
+    return data.message;
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      console.log(
+        "🚀 ~ AuthtenticateUser ~ error.response.data:",
+        error.response.data
+      );
+      throw new Error(error.response.data.message);
+    }
+  }
+}
+
+export async function getUser() {
+  try {
+    const { data } = await api<User>("/auth/user");
     return data;
   } catch (error) {
     if (isAxiosError(error) && error.response) {

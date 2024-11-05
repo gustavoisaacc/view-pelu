@@ -32,3 +32,16 @@ export type ConfirmToken = Pick<Auth, "token">;
 export type RequestConfirmationCodeForm = Pick<Auth, "email">;
 export type ForgotPasswordForm = Pick<Auth, "email">;
 export type NewPasswordForm = Pick<Auth, "password" | "confirmation_password">;
+
+// schema user
+export const userSchema = z.object({
+  _id: z.string(),
+  name: z.string(),
+  lastName: z.string(),
+  phone: z.string(),
+  direction: z.string(),
+  email: z.string().email(),
+  service: z.string(),
+});
+
+export type User = z.infer<typeof userSchema>;

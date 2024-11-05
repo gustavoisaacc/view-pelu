@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { PinInput, PinInputField } from "@chakra-ui/pin-input";
 import { ConfirmToken } from "../../schema/auth";
@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 
 export default function ConfirmAccountView() {
   const [token, setToken] = useState<ConfirmToken["token"]>("");
-
+  const navigate = useNavigate();
   const { mutate } = useMutation({
     mutationFn: ConfirmAccount,
     onError: (error) => {
@@ -18,6 +18,9 @@ export default function ConfirmAccountView() {
     },
     onSuccess: (data) => {
       toast.success(data);
+      setTimeout(() => {
+        navigate("/auth/login");
+      }, 3000);
     },
   });
 

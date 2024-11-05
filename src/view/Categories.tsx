@@ -29,7 +29,7 @@ function Categories() {
   if (data)
     return (
       <>
-        <Button route="/" className=" inline-block  ml-16 mt-10">
+        <Button route="/dashboard" className=" inline-block  ml-16 mt-10">
           Volver
         </Button>
         <div className="max-w-screen-xl m-auto p-16">
