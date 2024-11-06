@@ -10,6 +10,8 @@ import ConfirmAccountView from "./view/auth/ConfirmAccountView";
 import RequestNewCodeView from "./view/auth/RequestNewCodeView";
 import ForgotPasswordView from "./view/auth/ForgotPasswordView";
 import NewPasswordView from "./view/auth/NewPasswordView";
+import EditarProfileView from "./view/EditarProfileView";
+import NewCiteView from "./view/NewCiteView";
 
 function Router() {
   return (
@@ -19,6 +21,8 @@ function Router() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/category" element={<Categories />} />
           <Route path="/category/:categoryId" element={<Service />} />
+          <Route path="/edit-profile" element={<EditarProfileView />} />
+          <Route path="/cita" element={<NewCiteView />} />
         </Route>
         <Route element={<AuthLayout />}>
           <Route path="/auth/login" element={<LoginView />} />
