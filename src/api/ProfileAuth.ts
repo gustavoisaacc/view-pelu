@@ -1,6 +1,6 @@
 import { isAxiosError } from "axios";
 import { api } from "../lib/axios";
-import { Avatar, avatarFrom, User } from "../schema/auth";
+import { Avatar, avatarFrom, User, UserFormData } from "../schema/auth";
 export async function getUser() {
   try {
     const { data } = await api<User>("/user");
@@ -23,8 +23,6 @@ export async function getUserAvatar() {
   }
 }
 
-// api/ProfileAuth.js
-
 export const upLoadAvatar = async (formData: avatarFrom) => {
   console.log("🚀 ~ upLoadAvatar ~ formData:", formData);
   try {
@@ -40,6 +38,18 @@ export const upLoadAvatar = async (formData: avatarFrom) => {
     } else {
       console.error("🚀 ~ upLoadAvatar ~ error desconocido:", error);
       throw new Error("Ocurrió un error inesperado al subir la imagen");
+    }
+  }
+};
+
+export const updateUser = async (formData: UserFormData) => {
+  try {
+    const { data } = await api.put("/edit-user", formData);
+    console.log("🚀 ~ updateUser ~ data:", data);
+    return data.message;
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error("Error al editar el usuario");
     }
   }
 };
