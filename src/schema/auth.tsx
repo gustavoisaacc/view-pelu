@@ -45,3 +45,12 @@ export const userSchema = z.object({
 });
 
 export type User = z.infer<typeof userSchema>;
+
+export const avatarSchema = z.object({
+  _id: z.string(),
+  url: z.string(),
+  user: z.string(),
+});
+
+export type Avatar = z.infer<typeof avatarSchema>;
+export type avatarFrom = Pick<Avatar, "url" | "user">;

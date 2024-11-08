@@ -5,7 +5,6 @@ import {
   ForgotPasswordForm,
   NewPasswordForm,
   RequestConfirmationCodeForm,
-  User,
   UserLoginForm,
   UserRegistrationForm,
 } from "../schema/auth";
@@ -110,21 +109,6 @@ export async function AuthtenticateUser(formData: UserLoginForm) {
     const { data } = await api.post("/auth/login", formData);
     localStorage.setItem("TOKEN", data.token);
     return data.message;
-  } catch (error) {
-    if (isAxiosError(error) && error.response) {
-      console.log(
-        "🚀 ~ AuthtenticateUser ~ error.response.data:",
-        error.response.data
-      );
-      throw new Error(error.response.data.message);
-    }
-  }
-}
-
-export async function getUser() {
-  try {
-    const { data } = await api<User>("/auth/user");
-    return data;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       console.log(

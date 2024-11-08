@@ -1,6 +1,16 @@
+import { useQuery } from "@tanstack/react-query";
+import { getUserAvatar } from "../api/ProfileAuth";
 import Button from "../components/Button";
+import { useAuth } from "../hooks/useAuth";
 
 function Dashboard() {
+  const { data, isError, isLoading } = useAuth();
+  const { data: avatarURL } = useQuery({
+    queryKey: ["avatar", data?._id],
+    queryFn: getUserAvatar,
+    retry: false,
+    refetchOnWindowFocus: false,
+  });
   return (
     <>
       <div className="grid place-content-center w-full max-w-full">
@@ -18,23 +28,23 @@ function Dashboard() {
           <Button route="/edit-profile/">Editar perfil</Button>
         </section>
         <section className="flex items-center mt-10 space-x-8 bg-white p-6 shadow-md rounded-lg w-full mx-auto">
-          <div className="relative h-40 w-40">
+          <div className="rrelative h-40 w-40 overflow-hidden rounded-full shadow-lg">
             <img
-              src="https://via.placeholder.com/150"
+              src={avatarURL || "https://via.placeholder.com/150"}
               alt="Foto de perfil"
-              className="h-full w-full rounded-full object-cover shadow-lg"
+              className="h-full w-full object-cover object-top"
             />
           </div>
 
           <div className="flex flex-col">
             <h1 className="text-2xl font-bold text-gray-800 capitalize">
-              Gustavo Chaile
+              {`${data?.name} ${data?.lastName}`}
             </h1>
             <h3 className="text-lg text-gray-500 font-medium mt-1">
-              profecion
+              profecion: {data?.service}
             </h3>
             <p className="text-sm text-gray-600 mt-2">
-              <span className="font-semibold">Contacto:</span> 123456789
+              <span className="font-semibold">Contacto:</span> {data?.phone}
             </p>
           </div>
         </section>
