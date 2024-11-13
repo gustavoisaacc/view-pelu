@@ -2,6 +2,7 @@ import { FieldErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import ErrorMessage from "../ErroMessage";
 import { AppointmentFormData } from "../../schema/appointment";
 import { handleDateChange } from "../../lib/handleChange";
+import { useLocation } from "react-router-dom";
 
 type AppointmentTypeProps = {
   register: UseFormRegister<AppointmentFormData>;
@@ -15,6 +16,11 @@ export default function AppointmentForm({
   setValue,
 }: AppointmentTypeProps) {
   const today = new Date().toISOString().split("T")[0];
+
+  const location = useLocation();
+  const paramsQuery = new URLSearchParams(location.search);
+  const params = paramsQuery.get("appointmentId");
+  console.log("🚀 ~ params:", params);
 
   return (
     <>

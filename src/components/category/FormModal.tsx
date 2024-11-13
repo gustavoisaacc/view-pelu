@@ -30,7 +30,6 @@ export default function FormModal() {
   const queryParam = new URLSearchParams(location.search);
   const query = queryParam.get("newCategory");
   const categoryId = queryParam.get("categoryId");
-  console.log("🚀 ~ FormModal ~ queryId:", typeof categoryId);
   const show = query || categoryId ? true : false;
 
   // UseForm
