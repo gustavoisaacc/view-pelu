@@ -21,7 +21,7 @@ function Button({ colorType, children, className, route, onclick }: BtnProps) {
     warning: "bg-warning hover:bg-yellow-700",
     danger: "bg-error hover:bg-red-600",
     success: "bg-success hover:bg-green-600",
-    primary: "bg-primary hover:bg-blue-600",
+    primary: "bg-primary hover:bg-secondary",
     default: "bg-gry hover:bg-gray-700",
   };
 

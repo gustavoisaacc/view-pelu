@@ -25,7 +25,7 @@ function ListService({ dataService, mutate }: ListServiceType) {
       {dataService && dataService.length ? (
         <ul
           role="list"
-          className="divide-y divide-gray-100 border border-gray-100 mt-10 bg-white shadow-lg"
+          className="divide-y divide-secondary border border-secondary mt-10 bg-primary shadow-lg"
         >
           {dataService.map((service) => (
             <li
@@ -36,24 +36,24 @@ function ListService({ dataService, mutate }: ListServiceType) {
                 <div className="min-w-0 flex-auto space-y-2">
                   <Link
                     to={`/category/${service._id}`}
-                    className="text-gray-600 cursor-pointer hover:underline text-3xl font-bold"
+                    className="text-white cursor-pointer hover:underline text-3xl font-bold"
                   >
                     {service.name}
                   </Link>
-                  <p className="text-sm text-gray-400">
+                  <p className="text-sm text-white">
                     Descripcion: {service.description}
                   </p>
-                  <p className="text-sm text-gray-400">
+                  <p className="text-sm text-white">
                     Duracion: {service.duration}
                   </p>
-                  <p className="text-sm text-gray-400">
+                  <p className="text-sm text-white">
                     Precio: ${service.price}
                   </p>
                 </div>
               </div>
               <div className="flex shrink-0 items-center gap-x-6">
                 <Menu as="div" className="relative flex-none">
-                  <MenuButton className="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-900">
+                  <MenuButton className="-m-2.5 block p-2.5 text-white hover:text-secondary">
                     <span className="sr-only">opciones</span>
                     <EllipsisVerticalIcon
                       className="h-9 w-9"
@@ -69,11 +69,11 @@ function ListService({ dataService, mutate }: ListServiceType) {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <MenuItems className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
+                    <MenuItems className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-primary py-2 shadow-lg ring-1 ring-white focus:outline-none">
                       <MenuItem>
                         <Link
                           to={`/category/${service._id}`}
-                          className="block px-3 py-1 text-sm leading-6 text-gray-900"
+                          className="block px-3 py-1 text-sm leading-6 text-white border-b border-white" 
                         >
                           Ver Servicios
                         </Link>
@@ -81,7 +81,7 @@ function ListService({ dataService, mutate }: ListServiceType) {
                       <MenuItem>
                         <Link
                           to={`?serviceId=${service._id}`}
-                          className="block px-3 py-1 text-sm leading-6 text-gray-900"
+                          className="block px-3 py-1 text-sm leading-6 text-white border-b border-white"
                         >
                           Editar Categoria
                         </Link>
@@ -89,7 +89,7 @@ function ListService({ dataService, mutate }: ListServiceType) {
                       <MenuItem>
                         <button
                           type="button"
-                          className="block px-3 py-1 text-sm leading-6 text-red-500"
+                          className="block px-3 py-1 text-sm leading-6 text-red-500 border-b border-white"
                           onClick={() =>
                             mutate({ serviceId: service._id, categoryId })
                           }

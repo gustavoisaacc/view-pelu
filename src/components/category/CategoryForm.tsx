@@ -10,7 +10,7 @@ type CategoryType = {
 export default function CategoryForm({ register, errors }: CategoryType) {
   return (
     <>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 ">
         <label className="font-normal text-lg lg:text-xl" htmlFor="name">
           Nombre
         </label>
@@ -18,7 +18,7 @@ export default function CategoryForm({ register, errors }: CategoryType) {
           id="name"
           type="text"
           placeholder="Nombre del producto"
-          className="w-full p-3  border-gray-300 border"
+          className="w-full p-3  border-primary border"
           {...register("name", {
             required: "El nombre es obligatorio",
           })}

@@ -67,15 +67,15 @@ function EditarProfileView() {
   if (data)
     return (
       <>
-        <Button route="/dashboard" className="inline-block ml-16 mt-10">
+        <Button route="/dashboard" className="inline-block ml-16 mt-10 bg-primary">
           Volver
         </Button>
         <div className="max-w-screen-xl m-auto p-16">
-          <h1 className="text-2xl capitalize font-semibold my-5">
+          <h1 className="text-2xl capitalize font-semibold my-5 text-primary">
             Editar Perfil
           </h1>
         </div>
-        <div className="max-w-screen-lg m-auto p-16 w-[90%]">
+        <div className="max-w-screen-lg m-auto p-16 w-[90%] bg-primary">
           <div className="mb-5">
             <AvatarProfile data={data} />
           </div>
@@ -86,8 +86,8 @@ function EditarProfileView() {
               className={`block w-full mt-5 text-center font-bold py-2 px-4 rounded shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-75 transition duration-300 ease-in-out 
                 ${
                   isButtonDisabled
-                    ? "bg-gray-400 cursor-not-allowed text-white"
-                    : "bg-lightpurple hover:bg-darkpurple text-white"
+                    ? "bg-white cursor-not-allowed text-primary"
+                    : "bg-secondary hover:bg-darkpurple text-white"
                 }`}
               disabled={isButtonDisabled}
             >

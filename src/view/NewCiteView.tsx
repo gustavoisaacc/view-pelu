@@ -28,14 +28,14 @@ function NewCiteView() {
 
   return (
     <div className="max-w-xl m-auto w-[90%]">
-      <Button route="/dashboard" className=" inline-block  ml-16 mt-10">
+      <Button route="/dashboard" className=" inline-block  ml-16 mt-10 bg-primary">
         Volver
       </Button>
       <form
         onSubmit={handleSubmit(handleAppointment)}
-        className=" mt-10 bg-white shadow-lg round-lg max-w-xl"
+        className=" mt-10 bg-primary shadow-lg round-lg max-w-xl"
       >
-        <div className="bg-lightpurple h-auto w-full p-5 ">
+        <div className="bg-primary h-auto w-full p-5 ">
           <h1 className="text-4xl text-center font-black text-white">
             Crear citas
           </h1>
@@ -48,7 +48,7 @@ function NewCiteView() {
           />
           <button
             type="submit"
-            className="block w-full bg-lightpurple hover:bg-darkpurple mt-5 text-center text-white font-bold py-2 px-4 rounded shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-75 transition  duration-300 ease-in-outs"
+            className="block w-full bg-secondary hover:bg-darkpurple mt-5 text-center text-white font-bold py-2 px-4 rounded shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-75 transition  duration-300 ease-in-outs"
           >
             Guardar
           </button>

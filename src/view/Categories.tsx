@@ -29,12 +29,12 @@ function Categories() {
   if (data)
     return (
       <>
-        <Button route="/dashboard" className=" inline-block  ml-16 mt-10">
+        <Button route="/dashboard" className=" inline-block  ml-16 mt-10 bg-primary">
           Volver
         </Button>
         <div className="max-w-screen-xl m-auto p-16">
           <h1 className="my-5">Categorias</h1>
-          <Button route="?newCategory=true">Crear Categoria</Button>
+          <Button route="?newCategory=true" colorType="primary">Crear Categoria</Button>
         </div>
         {/* Listado de categorias */}
 

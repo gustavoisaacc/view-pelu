@@ -18,7 +18,7 @@ export default function ServiceForm({ register, errors }: ServiceType) {
           id="name"
           type="text"
           placeholder="Nombre del producto"
-          className="w-full p-3  border-gray-300 border"
+          className="w-full p-3  border-primary border"
           {...register("name", {
             required: "El nombre es obligatorio",
           })}
@@ -32,7 +32,7 @@ export default function ServiceForm({ register, errors }: ServiceType) {
         <textarea
           id="description"
           placeholder="Nombre del producto"
-          className="w-full p-3  border-gray-300 border"
+          className="w-full p-3  border-primary border"
           {...register("description", {
             required: "La description es obligatorio",
           })}
@@ -49,7 +49,7 @@ export default function ServiceForm({ register, errors }: ServiceType) {
           id="duration"
           type="text"
           placeholder="Tiempo que dura el servicio"
-          className="w-full p-3  border-gray-300 border"
+          className="w-full p-3  border-primary border"
           {...register("duration", {
             required: "La duracion es obligatorio",
           })}
@@ -66,7 +66,7 @@ export default function ServiceForm({ register, errors }: ServiceType) {
           id="price"
           type="number"
           placeholder="Nombre del producto"
-          className="w-full p-3  border-gray-300 border"
+          className="w-full p-3  border-primary border"
           {...register("price", {
             required: "El precio es obligatorio",
           })}

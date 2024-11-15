@@ -109,7 +109,7 @@ export default function FormModal() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black/60" />
+            <div className="fixed inset-0 bg-secondary/70" />
           </TransitionChild>
 
           <div className="fixed inset-0 overflow-y-auto">
@@ -138,7 +138,7 @@ export default function FormModal() {
                     <CategoryForm register={register} errors={errors} />
                     <button
                       type="submit"
-                      className="block w-full bg-lightpurple hover:bg-darkpurple mt-5 text-center text-white font-bold py-2 px-4 rounded shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-75 transition  duration-300 ease-in-outs"
+                      className="block w-full bg-primary hover:bg-darkpurple mt-5 text-center text-white font-bold py-2 px-4 rounded shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-75 transition  duration-300 ease-in-outs"
                     >
                       Guardar
                     </button>

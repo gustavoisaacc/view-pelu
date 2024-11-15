@@ -16,18 +16,18 @@ function Dashboard() {
       <div className="grid place-content-center w-full max-w-full">
         <h1 className="text-center my-5">Panel de Administracion</h1>
         <section className="flex flex-col lg:flex-row gap-5">
-          <Button route="/cita" colorType="warning">
+          <Button route="/cita" colorType="primary">
             Crear cita
           </Button>
-          <Button route="/category" colorType="warning">
+          <Button route="/category" colorType="primary">
             Crear categoría
           </Button>
-          <Button route="/cita" colorType="danger">
+          <Button route="/cita" colorType="primary">
             Turnos reservados
           </Button>
-          <Button route="/edit-profile/">Editar perfil</Button>
+          <Button route="/edit-profile/" colorType="primary">Editar perfil</Button>
         </section>
-        <section className="flex items-center mt-10 space-x-8 bg-white p-6 shadow-md rounded-lg w-full mx-auto">
+        <section className="flex items-center mt-10 space-x-8 bg-primary p-6 shadow-md rounded-lg w-full mx-auto">
           <div className="rrelative h-40 w-40 overflow-hidden rounded-full shadow-lg">
             <img
               src={avatarURL || "https://via.placeholder.com/150"}
@@ -37,19 +37,19 @@ function Dashboard() {
           </div>
 
           <div className="flex flex-col">
-            <h1 className="text-2xl font-bold text-gray-800 capitalize">
+            <h1 className="text-2xl font-bold text-white capitalize">
               {`${data?.name} ${data?.lastName}`}
             </h1>
-            <h3 className="text-lg text-gray-500 font-medium mt-1">
-              profecion: {data?.service}
+            <h3 className="text-lg text-white font-medium mt-1">
+              profesion: {data?.service}
             </h3>
-            <p className="text-sm text-gray-600 mt-2">
+            <p className="text-sm text-white mt-2">
               <span className="font-semibold">Contacto:</span> {data?.phone}
             </p>
           </div>
         </section>
-        <div className="flex justify-center items-center border-b border-gray-300 bg-white text-black mt-10">
-          <p className="text-center py-4 text-lg font-semibold text-gray-500">
+        <div className="flex justify-center items-center border-b border-secondary bg-primary text-black mt-10">
+          <p className="text-center py-4 text-lg font-semibold text-white">
             IMAGENES
           </p>
         </div>

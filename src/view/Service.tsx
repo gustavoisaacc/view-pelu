@@ -39,14 +39,14 @@ function Service() {
   if (dataCategory)
     return (
       <>
-        <Button route="/category" className=" inline-block  ml-16 mt-10">
+        <Button route="/category" className=" inline-block  ml-16 mt-10 bg-primary">
           Volver
         </Button>
         <div className="max-w-screen-xl m-auto p-16">
           <h1 className=" text-2xl capitalize font-semibold my-5">
             {dataCategory.name}
           </h1>
-          <Button route="?newService=true">Crear Servicio</Button>
+          <Button route="?newService=true" colorType="primary">Crear Servicio</Button>
         </div>
         {/* Listado de categorias */}
 
