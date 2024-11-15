@@ -58,3 +58,14 @@ export const avatarSchema = z.object({
 
 export type Avatar = z.infer<typeof avatarSchema>;
 export type avatarFrom = Pick<Avatar, "url" | "user">;
+
+const userclientSchema = z.object({
+  name: z.string(),
+  lastName: z.string(),
+  phone: z.string(),
+  direction: z.string(),
+  avatarUrl: z.string(),
+  service: z.string(),
+  appointments: z.string().array(),
+});
+export type UserClient = z.infer<typeof userclientSchema>;

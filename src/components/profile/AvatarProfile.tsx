@@ -15,6 +15,7 @@ function AvatarProfile({ data }: AvatarProfileType) {
     retry: false,
     refetchOnWindowFocus: false,
   });
+
   return (
     <div className="flex items-center mt-10 space-x-8 bg-white p-6 shadow-md rounded-lg w-full mx-auto justify-between">
       <div className="flex items-center gap-5">

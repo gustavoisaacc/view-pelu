@@ -2,29 +2,74 @@ import { useForm } from "react-hook-form";
 import AppointmentForm from "../components/citas/AppointmentFrom";
 import Button from "../components/Button";
 import { AppointmentFormData } from "../schema/appointment";
-import { useMutation } from "@tanstack/react-query";
-import { createAppointment } from "../api/Appointmentpi";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  createAppointment,
+  getAppointment,
+  updateAppointment,
+} from "../api/Appointmentpi";
 import { toast } from "react-toastify";
+import ListAppointement from "../components/citas/ListAppointement";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function NewCiteView() {
+  const location = useLocation();
+  const paramsQuery = new URLSearchParams(location.search);
+  const params = paramsQuery.get("appointmentId");
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
+    reset,
   } = useForm<AppointmentFormData>();
 
+  const { data } = useQuery({
+    queryKey: ["appointment"],
+    queryFn: getAppointment,
+    retry: 1,
+    refetchOnWindowFocus: false,
+  });
+
+  const queryClient = useQueryClient();
+
   const { mutate } = useMutation({
-    mutationFn: createAppointment,
+    mutationFn: ({
+      formData,
+      paramsId,
+    }: {
+      formData: AppointmentFormData;
+      paramsId: string;
+    }) => {
+      // Si paramsId está presente, realiza la actualización; de lo contrario, crea un nuevo turno
+      return paramsId
+        ? updateAppointment({ id: paramsId, formData })
+        : createAppointment(formData);
+    },
     onError: (error) => {
-      toast.error(`${error}`);
+      if (error instanceof Error) {
+        const messages = error.message.split(", ");
+        messages.forEach((msg) => toast.error(msg));
+      }
     },
     onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["appointment"] });
       toast.success(data);
+      reset();
+      navigate(location.pathname);
     },
   });
 
-  const handleAppointment = (formData: AppointmentFormData) => mutate(formData);
+  const handleAppointment = (formData: AppointmentFormData) => {
+    if (params) {
+      // Si hay un ID de turno, intenta actualizar
+      mutate({ formData, paramsId: params });
+    } else {
+      // De lo contrario, crea uno nuevo
+      mutate({ formData, paramsId: "" });
+    }
+  };
 
   return (
     <div className="max-w-xl m-auto w-[90%]">
