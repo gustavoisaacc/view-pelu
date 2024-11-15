@@ -1,9 +1,9 @@
+import { format } from "@formkit/tempo";
+
 export const formatDate = (date: Date) => {
-  return new Date(date)
-    .toLocaleDateString("es-ES", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    })
-    .replaceAll("/", "-");
+  return format({
+    date: new Date(date),
+    format: "full",
+    tz: "Pacific/Chatham",
+  });
 };

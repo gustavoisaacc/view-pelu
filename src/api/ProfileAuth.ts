@@ -53,3 +53,16 @@ export const updateUser = async (formData: UserFormData) => {
     }
   }
 };
+
+//perfiles para el cliente
+
+export async function getUserClient() {
+  try {
+    const { data } = await api("/profile");
+    return data;
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.message);
+    }
+  }
+}

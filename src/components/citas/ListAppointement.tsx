@@ -26,7 +26,6 @@ function ListAppointement({ data }: ListAppointementType) {
   const { mutate } = useMutation({
     mutationFn: deleteAppointment,
     onError: (error) => {
-      console.log("🚀 ~ ListAppointement ~ error:", error);
       toast.error(`${error}`);
     },
     onSuccess: (data) => {

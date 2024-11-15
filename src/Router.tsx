@@ -12,6 +12,7 @@ import ForgotPasswordView from "./view/auth/ForgotPasswordView";
 import NewPasswordView from "./view/auth/NewPasswordView";
 import EditarProfileView from "./view/EditarProfileView";
 import NewCiteView from "./view/NewCiteView";
+import ProfileView from "./view/ProfileView";
 
 function Router() {
   return (
@@ -25,6 +26,7 @@ function Router() {
           <Route path="/cita" element={<NewCiteView />} />
         </Route>
         <Route element={<AuthLayout />}>
+          <Route path="/profile/:id" element={<ProfileView />} />
           <Route path="/auth/login" element={<LoginView />} />
           <Route path="/auth/register" element={<RegisterView />} />
           <Route

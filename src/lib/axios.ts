@@ -5,7 +5,6 @@ export const api = axios.create({
 });
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("TOKEN");
-  console.log("🚀 ~ api.interceptors.request.use ~ token:", token);
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }

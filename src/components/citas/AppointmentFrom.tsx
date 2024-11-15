@@ -2,25 +2,47 @@ import { FieldErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import ErrorMessage from "../ErroMessage";
 import { AppointmentFormData } from "../../schema/appointment";
 import { handleDateChange } from "../../lib/handleChange";
-import { useLocation } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getAppointmentById } from "../../api/Appointmentpi";
+import { useEffect } from "react";
+
+import { parse, format } from "@formkit/tempo";
+import { date } from "zod";
 
 type AppointmentTypeProps = {
   register: UseFormRegister<AppointmentFormData>;
   errors: FieldErrors<AppointmentFormData>;
   setValue: UseFormSetValue<AppointmentFormData>;
+  params: string;
 };
 
 export default function AppointmentForm({
   register,
   errors,
   setValue,
+  params,
 }: AppointmentTypeProps) {
   const today = new Date().toISOString().split("T")[0];
 
-  const location = useLocation();
-  const paramsQuery = new URLSearchParams(location.search);
-  const params = paramsQuery.get("appointmentId");
-  console.log("🚀 ~ params:", params);
+  const { data } = useQuery<AppointmentFormData>({
+    queryKey: ["appoitmentEdit", params],
+    queryFn: () => getAppointmentById(params || ""),
+    enabled: !!params,
+    retry: false,
+  });
+
+  useEffect(() => {
+    if (data && params) {
+      const formatDate = format({
+        date: new Date(data.date),
+        format: "YYYY-MM-DD",
+        tz: "Pacific/Chatham",
+      });
+      setValue("date", formatDate);
+      setValue("startTime", data.startTime);
+      setValue("delay", data.delay);
+    }
+  }, [data, params, setValue]);
 
   return (
     <>
