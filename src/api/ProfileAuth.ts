@@ -66,3 +66,14 @@ export async function getUserClient() {
     }
   }
 }
+
+export const getUserClientByid = async (id: User["_id"]) => {
+  try {
+    const { data } = await api(`/profile/${id}`);
+    return data;
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.message);
+    }
+  }
+};

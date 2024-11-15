@@ -13,6 +13,7 @@ import NewPasswordView from "./view/auth/NewPasswordView";
 import EditarProfileView from "./view/EditarProfileView";
 import NewCiteView from "./view/NewCiteView";
 import ProfileView from "./view/ProfileView";
+import PeluqueroDetailView from "./view/PeluqueroDetailView";
 
 function Router() {
   return (
@@ -26,7 +27,7 @@ function Router() {
           <Route path="/cita" element={<NewCiteView />} />
         </Route>
         <Route element={<AuthLayout />}>
-          <Route path="/profile/:id" element={<ProfileView />} />
+          <Route path="/profile" element={<ProfileView />} />
           <Route path="/auth/login" element={<LoginView />} />
           <Route path="/auth/register" element={<RegisterView />} />
           <Route
@@ -34,6 +35,10 @@ function Router() {
             element={<ConfirmAccountView />}
           />
           <Route path="/auth/request-code" element={<RequestNewCodeView />} />
+          <Route
+            path="/pelu/:namelastName/:id"
+            element={<PeluqueroDetailView />}
+          />
           <Route
             path="/auth/forgot-password"
             element={<ForgotPasswordView />}
