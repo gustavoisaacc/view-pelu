@@ -8,7 +8,7 @@ type CardProfileType = {
 };
 function CardProfile({ data }: CardProfileType) {
   return (
-    <CardContainer className="flex-col w-full p-5">
+    <CardContainer className="flex flex-col w-full p-5">
       <div className="relative h-40 w-40 overflow-hidden rounded-full shadow-lg">
         <img
           src={data.avatarUrl || "https://via.placeholder.com/150"}
@@ -28,12 +28,12 @@ function CardProfile({ data }: CardProfileType) {
           <span className="font-semibold">Contacto:</span> {data?.phone}
         </p>
       </div>
-      <div className="flex justify-between gap-5">
+      <div className="flex justify-between gap-5 mt-5">
         <Badge variant="default">Cortes Modernos</Badge>
         <Badge variant="default">Cortes Modernos</Badge>
         <Badge variant="default">Cortes Modernos</Badge>
       </div>
-      <Button variant="outline" className=" border-blue-500 text-blue-500">
+      <Button variant="outline" className="mt-5 border-blue-500 text-blue-500">
         <Calendar className="h-4 w-4" />
         Element
       </Button>

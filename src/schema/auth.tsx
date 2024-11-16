@@ -66,6 +66,6 @@ const userclientSchema = z.object({
   direction: z.string(),
   avatarUrl: z.string(),
   service: z.string(),
-  appointments: z.string().array(),
+  appointments: z.array(z.string()),
 });
 export type UserClient = z.infer<typeof userclientSchema>;
