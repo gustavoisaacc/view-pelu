@@ -11,6 +11,7 @@ type ButtonProps = {
   size?: "default" | "sm" | "lg" | "icon";
   className?: string;
   children: React.ReactNode;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 const buttonVariants = {
@@ -36,7 +37,14 @@ const buttonSizes = {
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { variant = "default", size = "default", className, children, ...props },
+    {
+      variant = "default",
+      size = "default",
+      className,
+      children,
+      onClick,
+      ...props
+    },
     ref
   ) => {
     const buttonClass = `${buttonVariants[variant]} ${buttonSizes[size]} ${
@@ -45,8 +53,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button
-        className={`inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${buttonClass}`}
+        className={`inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2  cursor-pointer  focus:outline-none focus:ring-0 ${buttonClass}`}
         ref={ref}
+        onClick={onClick}
         {...props}
       >
         {children}

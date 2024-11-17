@@ -4,8 +4,12 @@ import { getUserClientByid } from "../api/ProfileAuth";
 
 import CardProfile from "../components/profile/CardProfile";
 import CardContainer from "../components/CardContainer";
-import Tabs from "../components/profile/TabLIst";
+import TabList from "../components/profile/TabLIst";
+import TabTrigger from "../components/profile/TabTrigger";
+import { useState } from "react";
 function PeluqueroDetailView() {
+  const [selectedTab, setSelectedTab] = useState("images");
+
   const { id } = useParams();
 
   const { data, isLoading, isError } = useQuery({
@@ -21,9 +25,26 @@ function PeluqueroDetailView() {
     <>
       <div className="">
         <CardProfile data={data} />
-
-        <CardContainer className="mt-5 p-2">
-          <Tabs />
+        <CardContainer className="mt-5">
+          <div className="grid w-full grid-cols-2">
+            <TabTrigger
+              selectedTab={selectedTab}
+              setSelectedTab={setSelectedTab}
+              value="images"
+            >
+              Imagen
+            </TabTrigger>
+            <TabTrigger
+              selectedTab={selectedTab}
+              setSelectedTab={setSelectedTab}
+              value="appointments"
+            >
+              Turnos
+            </TabTrigger>
+          </div>
+        </CardContainer>
+        <CardContainer className="mt-5 p-5 gap-5">
+          <TabList data={data} selectedTab={selectedTab} />
         </CardContainer>
       </div>
     </>

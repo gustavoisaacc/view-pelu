@@ -1,50 +1,25 @@
-import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { formatDate } from "../../hooks/date";
+import { UserClient } from "../../schema/auth";
+import { Button } from "../ButtonP";
+import CardContainer from "../CardContainer";
+import ModalViewAppointment from "./ModalViewAppointment";
 
-// Componente Tabs
-const Tabs = () => {
-  const [selectedTab, setSelectedTab] = useState("images");
+type TabListProps = {
+  selectedTab: string;
+  data: UserClient;
+};
 
+const TabList = ({ selectedTab, data }: TabListProps) => {
+  const navigate = useNavigate();
   return (
-    <div className="mt-6">
-      <div className="grid w-full grid-cols-3">
-        <button
-          className={`p-2 text-center ${
-            selectedTab === "images"
-              ? "bg-purple-600 text-white"
-              : "bg-gray-200"
-          }`}
-          onClick={() => setSelectedTab("images")}
-        >
-          Imágenes
-        </button>
-        <button
-          className={`p-2 text-center ${
-            selectedTab === "appointments"
-              ? "bg-purple-600 text-white"
-              : "bg-gray-200"
-          }`}
-          onClick={() => setSelectedTab("appointments")}
-        >
-          Turnos
-        </button>
-        <button
-          className={`p-2 text-center ${
-            selectedTab === "reviews"
-              ? "bg-purple-600 text-white"
-              : "bg-gray-200"
-          }`}
-          onClick={() => setSelectedTab("reviews")}
-        >
-          Reseñas
-        </button>
-      </div>
-
+    <div>
       <div className="mt-4">
         {selectedTab === "images" && (
           <div>
-            <h3 className="text-lg font-semibold">Galería de Trabajos</h3>
+            <h3 className="text-lg font-semibold mb-5">Galería de Trabajos</h3>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+              {[].map((i) => (
                 <div
                   key={i}
                   className="aspect-square overflow-hidden rounded-lg bg-purple-100"
@@ -61,51 +36,40 @@ const Tabs = () => {
         )}
 
         {selectedTab === "appointments" && (
-          <div>
-            <h3 className="text-lg font-semibold">Agendar Cita</h3>
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Fecha</label>
-                <input type="date" className="w-full p-2 border rounded" />
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Hora</label>
-                <input type="time" className="w-full p-2 border rounded" />
-              </div>
-
-              <button
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded"
-                disabled
-              >
-                Confirmar Cita
-              </button>
-            </div>
-          </div>
-        )}
-
-        {selectedTab === "reviews" && (
-          <div>
-            <h3 className="text-lg font-semibold">Reseñas de Clientes</h3>
-            <div className="space-y-4">
-              <div className="border-b border-gray-200 pb-4">
-                <h4 className="font-semibold">Juan Pérez</h4>
-                <p className="text-sm text-gray-600">
-                  Excelente servicio, muy puntual.
-                </p>
-              </div>
-              <div className="border-b border-gray-200 pb-4">
-                <h4 className="font-semibold">Ana Gómez</h4>
-                <p className="text-sm text-gray-600">
-                  Muy profesional, los recomiendo.
-                </p>
-              </div>
+          <div className="">
+            <h3 className="text-lg font-semibold mb-5">Agendar Cita</h3>
+            <div className="space-y-4 w-full">
+              {data && data.appointments ? (
+                <>
+                  {data.appointments.map((item) => (
+                    <CardContainer className="p-2 bg-slate-300 flex justify-between items-center">
+                      <div>
+                        <h3>{formatDate(item.date)}</h3>
+                        <p>{item.startTime}</p>
+                        <p>{item.delay} min</p>
+                      </div>
+                      <Button
+                        onClick={() =>
+                          navigate(`?view-appointment=${item._id}`)
+                        }
+                        variant="outline"
+                        className="text-lightpurple border-lightpurple"
+                      >
+                        Reservar
+                      </Button>
+                    </CardContainer>
+                  ))}
+                </>
+              ) : (
+                <p>NO hay turnos disponuibles</p>
+              )}
             </div>
           </div>
         )}
       </div>
+      <ModalViewAppointment />
     </div>
   );
 };
 
-export default Tabs;
+export default TabList;
