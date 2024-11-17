@@ -1,3 +1,30 @@
+@keyframes slideUp {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.card-unica {
+  position: relative;
+  width: 95%;
+  max-width: 375px;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-unica:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
 .card-unica-content {
     position: absolute;
     bottom: 0;
@@ -22,6 +49,7 @@
   .card-unica-title {
     font-size: 1.2em;
     margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
   }
   
   .card-unica-description {
@@ -31,7 +59,7 @@
   
   .card-unica-button {
     padding: 8px 16px;
-    background-color: #800080;
+    background-color: #951abe;
     border: none;
     border-radius: 5px;
     color: white;
@@ -41,6 +69,15 @@
   }
   
   .card-unica-button:hover {
-    background-color: #5D3A9B;
+    background-color: #cb6ce6;
     transform: translateY(-2px);
   }
+
+  @media (min-width: 1024px) {
+      .card-unica {
+        display: inline-flex;
+        margin: 10px 60px 10px 70px;
+        justify-content: space-around;
+      }
+    }
+    

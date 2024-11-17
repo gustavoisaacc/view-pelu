@@ -1,20 +1,20 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import "../style/cardParticular.css";
 
-const CardParticular = ({ title, description, backgroundImage }) => {
-  const navigate = useNavigate();
+type CardParticularProsps = {
+  title: string
+  description: string
+  backgroundImage: string
+}
 
-  const handleRedirect = () => {
-    navigate('/NotFound'); 
-  };
+const CardParticular = ({ title, description, backgroundImage }: CardParticularProsps) => {
+
 
   return (
     <div className="card-unica" style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className="card-unica-content">
         <h2 className="card-unica-title">{title}</h2>
         <p className="card-unica-description">{description}</p>
-        <button className="card-unica-button" onClick={handleRedirect}>Ver más</button>
+        <button className="card-unica-button">Ver más</button>
       </div>
     </div>
   );

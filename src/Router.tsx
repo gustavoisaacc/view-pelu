@@ -14,6 +14,9 @@ import EditarProfileView from "./view/EditarProfileView";
 import NewCiteView from "./view/NewCiteView";
 import ProfileView from "./view/ProfileView";
 import PeluqueroDetailView from "./view/PeluqueroDetailView";
+import NotFound from "./components/home/pages/NotFound";
+import Home from "./components/home/pages/Home";
+
 
 function Router() {
   return (
@@ -43,9 +46,13 @@ function Router() {
             path="/auth/forgot-password"
             element={<ForgotPasswordView />}
           />
+          <Route
+            path="/"
+            element={<Home />}
+          />
           <Route path="/auth/new-password" element={<NewPasswordView />} />
         </Route>
-        <Route path="*" element={<p>Not found</p>} />
+        <Route path="*" element={<NotFound/>} />
       </Routes>
     </BrowserRouter>
   );

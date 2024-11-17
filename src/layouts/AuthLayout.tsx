@@ -5,8 +5,8 @@ import { ToastContainer } from "react-toastify";
 function AuthLayout() {
   return (
     <>
-      <div className=" bg-black min-h-screen ">
-        <div className="py-16 mx-auto w-[90%] lg:py-20 md:w-[450px] ">
+      <div className=" bg-lightpurple min-h-screen ">
+        <div className="pt-16 mx-auto w-[100%] lg:pt-20" /*md:w-[450px]*/ >
           <Logo />
           <div className="mt-10">
             <Outlet />

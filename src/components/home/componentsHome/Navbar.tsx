@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "../style/navbar.css";
+import img1 from "../image/carrito.png"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,7 +8,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-header">
-        <h1 className="navbar-title">Mi Sitio</h1>
+        <img src={img1} alt="" className="img-nav"/>
       </div>
     </nav>
   );

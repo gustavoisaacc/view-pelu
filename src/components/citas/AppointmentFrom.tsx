@@ -5,9 +5,7 @@ import { handleDateChange } from "../../lib/handleChange";
 import { useQuery } from "@tanstack/react-query";
 import { getAppointmentById } from "../../api/Appointmentpi";
 import { useEffect } from "react";
-
-import { parse, format } from "@formkit/tempo";
-import { date } from "zod";
+import { format } from "@formkit/tempo";
 
 type AppointmentTypeProps = {
   register: UseFormRegister<AppointmentFormData>;

@@ -29,3 +29,17 @@
   .slick-next {
     right: 20px;
   }
+
+  @media (min-width: 1024px) {
+    .carrusel-container {
+      max-width: 100%;
+    }
+  
+    .carrusel-image {
+      height: 500px;
+    }
+  
+    .slick-prev, .slick-next {
+      font-size: 2rem;
+    }
+  }
