@@ -1,6 +1,7 @@
 import { isAxiosError } from "axios";
 import { AppointmentFormData, Appointment } from "../schema/appointment";
 import { api } from "../lib/axios";
+import { Category } from "../schema/categroy.schema";
 
 export const createAppointment = async (formData: AppointmentFormData) => {
   try {
@@ -76,6 +77,18 @@ export const updateAppointment = async ({
 
         throw new Error(errorMessages); // Lanza el error como una cadena de texto
       }
+    }
+  }
+};
+
+export const getCategoryByIdAppoitment = async (id: Category["_id"]) => {
+  try {
+    const { data } = await api(`/appointment/category/${id}`);
+    return data;
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      console.log("🚀 ~ deleteAppointment ~ error.response:", error.response);
+      throw new Error(error.response.data.message);
     }
   }
 };
