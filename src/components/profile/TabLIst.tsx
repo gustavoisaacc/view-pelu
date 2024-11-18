@@ -4,6 +4,7 @@ import { UserClient } from "../../schema/auth";
 import { Button } from "../ButtonP";
 import CardContainer from "../CardContainer";
 import ModalViewAppointment from "./ModalViewAppointment";
+import { useQueryClient } from "@tanstack/react-query";
 
 type TabListProps = {
   selectedTab: string;
@@ -12,6 +13,7 @@ type TabListProps = {
 
 const TabList = ({ selectedTab, data }: TabListProps) => {
   const navigate = useNavigate();
+  const quryClient = useQueryClient();
   return (
     <div>
       <div className="mt-4">
@@ -49,9 +51,12 @@ const TabList = ({ selectedTab, data }: TabListProps) => {
                         <p>{item.delay} min</p>
                       </div>
                       <Button
-                        onClick={() =>
-                          navigate(`?view-appointment=${item._id}`)
-                        }
+                        onClick={() => {
+                          navigate(`?view-appointment=${item._id}`);
+                          quryClient.invalidateQueries({
+                            queryKey: ["appointment"],
+                          });
+                        }}
                         variant="outline"
                         className="text-lightpurple border-lightpurple"
                       >

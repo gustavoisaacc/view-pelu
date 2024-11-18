@@ -17,38 +17,38 @@ function PeluqueroDetailView() {
     queryFn: () => getUserClientByid(id || ""),
     enabled: !!id,
   });
-  console.log("🚀 ~ PeluqueroDetailView ~ data:", data);
 
   if (isLoading) return <p>Cargando...</p>;
   if (isError) return <p>Error al cargar el perfil.</p>;
-  return (
-    <>
-      <div className="">
-        <CardProfile data={data} />
-        <CardContainer className="mt-5">
-          <div className="grid w-full grid-cols-2">
-            <TabTrigger
-              selectedTab={selectedTab}
-              setSelectedTab={setSelectedTab}
-              value="images"
-            >
-              Imagen
-            </TabTrigger>
-            <TabTrigger
-              selectedTab={selectedTab}
-              setSelectedTab={setSelectedTab}
-              value="appointments"
-            >
-              Turnos
-            </TabTrigger>
-          </div>
-        </CardContainer>
-        <CardContainer className="mt-5 p-5 gap-5">
-          <TabList data={data} selectedTab={selectedTab} />
-        </CardContainer>
-      </div>
-    </>
-  );
+  if (data)
+    return (
+      <>
+        <div className="">
+          <CardProfile data={data} />
+          <CardContainer className="mt-5">
+            <div className="grid w-full grid-cols-2">
+              <TabTrigger
+                selectedTab={selectedTab}
+                setSelectedTab={setSelectedTab}
+                value="images"
+              >
+                Imagen
+              </TabTrigger>
+              <TabTrigger
+                selectedTab={selectedTab}
+                setSelectedTab={setSelectedTab}
+                value="appointments"
+              >
+                Turnos
+              </TabTrigger>
+            </div>
+          </CardContainer>
+          <CardContainer className="mt-5 p-5 gap-5">
+            <TabList data={data} selectedTab={selectedTab} />
+          </CardContainer>
+        </div>
+      </>
+    );
 }
 
 export default PeluqueroDetailView;
