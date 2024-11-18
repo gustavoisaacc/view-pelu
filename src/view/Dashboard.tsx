@@ -13,8 +13,8 @@ function Dashboard() {
   });
   return (
     <>
-      <div className="grid place-content-center w-full max-w-full">
-        <h1 className="text-center my-5">Panel de Administracion</h1>
+      <div className="grid place-content-center w-full max-w-full bg-lightpurple">
+        <h1 className="text-center py-4 text-4xl font-semibold text-white">Panel de Administracion</h1>
         <section className="flex flex-col lg:flex-row gap-5">
           <Button route="/cita" colorType="primary">
             Crear cita

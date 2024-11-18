@@ -22,7 +22,7 @@ function Button({ colorType, children, className, route, onclick }: BtnProps) {
     danger: "bg-error hover:bg-red-600",
     success: "bg-success hover:bg-green-600",
     primary: "bg-primary hover:bg-secondary",
-    default: "bg-gry hover:bg-gray-700",
+    default: "bg-primary hover:bg-secondary",
   };
 
   // Usar el color definido o el color por defecto

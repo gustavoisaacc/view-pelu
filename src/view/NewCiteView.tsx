@@ -72,8 +72,9 @@ function NewCiteView() {
   };
 
   return (
+    <div className="bg-lightpurple">
     <div className="max-w-xl m-auto w-[90%]">
-      <Button route="/dashboard" className=" inline-block  ml-16 mt-10 bg-primary">
+      <Button route="/dashboard" className=" flex justify-center bg-primary hover:bg-secondary">
         Volver
       </Button>
       <form
@@ -93,12 +94,13 @@ function NewCiteView() {
           />
           <button
             type="submit"
-            className="block w-full bg-secondary hover:bg-darkpurple mt-5 text-center text-white font-bold py-2 px-4 rounded shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-75 transition  duration-300 ease-in-outs"
+            className="block w-full bg-lightpurple hover:bg-secondary mt-5 text-center text-white font-bold py-8 px-4 rounded shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-75 transition  duration-300 ease-in-outs"
           >
             Guardar
           </button>
         </div>
       </form>
+    </div>
     </div>
   );
 }

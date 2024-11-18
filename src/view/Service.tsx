@@ -39,14 +39,15 @@ function Service() {
   if (dataCategory)
     return (
       <>
-        <Button route="/category" className=" inline-block  ml-16 mt-10 bg-primary">
-          Volver
-        </Button>
-        <div className="max-w-screen-xl m-auto p-16">
-          <h1 className=" text-2xl capitalize font-semibold my-5">
+      <div className="bg-lightpurple">
+      <h1 className=" text-6xl text-white capitalize font-semibold flex justify-center">
             {dataCategory.name}
           </h1>
-          <Button route="?newService=true" colorType="primary">Crear Servicio</Button>
+        <div className="flex justify-around pt-16">
+          <Button route="/category" className="bg-primary w-1/5 flex justify-center">
+            Volver
+          </Button>
+          <Button route="?newService=true" colorType="primary" className="w-2/4 justify-center flex">Crear Servicio</Button>
         </div>
         {/* Listado de categorias */}
 
@@ -55,6 +56,7 @@ function Service() {
         </div>
 
         <FormServiceModal />
+        </div>
       </>
     );
 }

@@ -47,6 +47,8 @@ export default function RegisterView() {
 
   return (
     <>
+    <div className="flex justify-center items-center">
+    <div className="w-full max-w-4xl">
       <form
         onSubmit={handleSubmit(handleRegister)}
         className=" bg-white mt-10"
@@ -68,7 +70,7 @@ export default function RegisterView() {
               id="email"
               type="email"
               placeholder="Email de Registro"
-              className="w-full p-3  border-gray-300 border"
+              className="w-full p-3  border-primary border"
               {...register("email", {
                 required: "El Email de registro es obligatorio",
                 pattern: {
@@ -87,7 +89,7 @@ export default function RegisterView() {
             <input
               type="name"
               placeholder="Nombre de Registro"
-              className="w-full p-3  border-gray-300 border"
+              className="w-full p-3  border-primary border"
               {...register("name", {
                 required: "El Nombre de usuario es obligatorio",
               })}
@@ -99,7 +101,7 @@ export default function RegisterView() {
             <input
               type="lastName"
               placeholder="Apellido de Registro"
-              className="w-full p-3  border-gray-300 border"
+              className="w-full p-3  border-primary border"
               {...register("lastName", {
                 required: "El Apellido de usuario es obligatorio",
               })}
@@ -113,7 +115,7 @@ export default function RegisterView() {
             <input
               type="phone"
               placeholder="Celular de Registro"
-              className="w-full p-3  border-gray-300 border"
+              className="w-full p-3  border-primary border"
               {...register("phone", {
                 required: "El Celular de usuario es obligatorio",
               })}
@@ -123,11 +125,11 @@ export default function RegisterView() {
             )}
           </div>
           <div className="flex flex-col gap-5">
-            <label className="font-normal text-lg">Direcciòn</label>
+            <label className="font-normal text-lg">Dirección</label>
             <input
               type="direction"
-              placeholder="Celular de Registro"
-              className="w-full p-3  border-gray-300 border"
+              placeholder="Dirección de Registro"
+              className="w-full p-3  border-primary border"
               {...register("direction", {
                 required: "El Direccion de usuario es obligatorio",
               })}
@@ -137,11 +139,11 @@ export default function RegisterView() {
             )}
           </div>
           <div className="flex flex-col gap-5">
-            <label className="font-normal text-lg">Profecion</label>
+            <label className="font-normal text-lg">Profesión</label>
             <input
               type="service"
-              placeholder="Celular de Registro"
-              className="w-full p-3  border-gray-300 border"
+              placeholder="Profesión de Registro"
+              className="w-full p-3  border-primary border"
               {...register("service", {
                 required: "El Servicio de usuario es obligatorio",
               })}
@@ -151,12 +153,12 @@ export default function RegisterView() {
             )}
           </div>
           <div className="flex flex-col gap-5">
-            <label className="font-normal text-lg">Password</label>
+            <label className="font-normal text-lg">Contraseña</label>
 
             <input
               type="password"
-              placeholder="Password de Registro"
-              className="w-full p-3  border-gray-300 border"
+              placeholder="Contraseña de Registro"
+              className="w-full p-3  border-primary border"
               {...register("password", {
                 required: "El Password es obligatorio",
                 minLength: {
@@ -171,13 +173,13 @@ export default function RegisterView() {
           </div>
 
           <div className="flex flex-col gap-5">
-            <label className="font-normal text-lg">Repetir Password</label>
+            <label className="font-normal text-lg">Repetir Contraseña</label>
 
             <input
               id=" confirmation_password"
               type="password"
-              placeholder="Repite Password de Registro"
-              className="w-full p-3  border-gray-300 border"
+              placeholder="Repite contraseña de Registro"
+              className="w-full p-3  border-primary border"
               {...register("confirmation_password", {
                 required: "Repetir Password es obligatorio",
                 validate: (value) =>
@@ -194,18 +196,20 @@ export default function RegisterView() {
           <input
             type="submit"
             value="Registrarme"
-            className=" bg-lightpurple hover:bg-purple-600 w-full p-3  text-white font-black  text-xl cursor-pointer mt-10"
+            className=" bg-primary hover:bg-lightpurple w-full p-3  text-white font-black  text-xl cursor-pointer mt-10"
           />
         </div>
       </form>
-      <nav className="mt-10 flex flex-col space-y-4">
+      <nav className="mt-10 flex flex-col space-y-4 mb-8">
         <Link
           to={"/auth/login"}
-          className="text-center text-gray-300 font-normal"
+          className="text-center text-white font-normal"
         >
           ¿Ys tienes cuentas? Iniciar Sesiòn
         </Link>
       </nav>
+      </div>
+      </div>
     </>
   );
 }

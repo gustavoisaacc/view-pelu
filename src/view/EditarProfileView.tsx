@@ -67,33 +67,34 @@ function EditarProfileView() {
   if (data)
     return (
       <>
-        <Button route="/dashboard" className="inline-block ml-16 mt-10 bg-primary">
-          Volver
-        </Button>
-        <div className="max-w-screen-xl m-auto p-16">
-          <h1 className="text-2xl capitalize font-semibold my-5 text-primary">
+        <div className="bg-lightpurple">
+          <h1 className=" text-6xl text-white capitalize font-semibold flex justify-center">
             Editar Perfil
           </h1>
-        </div>
-        <div className="max-w-screen-lg m-auto p-16 w-[90%] bg-primary">
-          <div className="mb-5">
-            <AvatarProfile data={data} />
+          <div className="max-w-screen-xl">
+            <Button route="/dashboard" className="flex justify-center ml-60 mb-10 mt-10 bg-primary w-1/5">
+              Volver
+            </Button>
           </div>
-          <form onSubmit={onSubmit}>
-            <EditUser register={register} errors={errors} />
-            <button
-              type="submit"
-              className={`block w-full mt-5 text-center font-bold py-2 px-4 rounded shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-75 transition duration-300 ease-in-out 
-                ${
-                  isButtonDisabled
-                    ? "bg-white cursor-not-allowed text-primary"
+          <div className="max-w-screen-lg m-auto p-16 w-[90%] bg-primary">
+            <div className="mb-5">
+              <AvatarProfile data={data} />
+            </div>
+            <form onSubmit={onSubmit}>
+              <EditUser register={register} errors={errors} />
+              <button
+                type="submit"
+                className={`block w-full mt-5 text-center font-bold py-2 px-4 rounded shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-75 transition duration-300 ease-in-out 
+                ${isButtonDisabled
+                    ? "bg-lightpurple cursor-not-allowed text-white"
                     : "bg-secondary hover:bg-darkpurple text-white"
-                }`}
-              disabled={isButtonDisabled}
-            >
-              Guardar
-            </button>
-          </form>
+                  }`}
+                disabled={isButtonDisabled}
+              >
+                Guardar
+              </button>
+            </form>
+          </div>
         </div>
       </>
     );

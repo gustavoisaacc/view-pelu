@@ -18,9 +18,9 @@ const NotFound = () => {
         <p className="notfound-message">Lo sentimos, esta página no funciona.</p>
       <button
       onClick={volver}
-      className="button"
+      className="card-unica-button card-unica-button:hover"
       >
-        volver
+        Volver
       </button>
       </div>
     </div>

@@ -4,6 +4,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../style/carrusel.css"
+import img1 from "../image/slider1.png"
+import img2 from "../image/slider2.png"
+import img3 from "../image/slider3.png"
+import img4 from "../image/slider4.png"
 
 const Carrusel = () => {
   const settings = {
@@ -21,10 +25,10 @@ const Carrusel = () => {
   return (
     <div className="carrusel-container">
       <Slider {...settings}>
-        <div><img src="https://st.depositphotos.com/16122460/55798/i/450/depositphotos_557980912-stock-photo-professional-hairdresser-cutting-man-hair.jpg" alt="Imagen 1" className="carrusel-image" /></div>
-        <div><img src="https://img.freepik.com/fotos-premium/hombre-esta-dando-vueltas-salon-belleza-corte-pelo-peinado-peluqueria-cuidado-masculino-barba-cabello_217333-1222.jpg" alt="Imagen 2" className="carrusel-image" /></div>
-        <div><img src="https://cdn.euroinnova.edu.es/img/subidasEditor/dise%C3%B1o%20sin%20t%C3%ADtulo(5)-1617156169.webp" alt="Imagen 3" className="carrusel-image" /></div>
-        <div><img src="https://cdn.euroinnova.edu.es/img/subidasEditor/haircut-4019676_1920-1631066974.webp" alt="Imagen 4" className="carrusel-image" /></div>
+        <div><img src={img1} alt="Imagen 1" className="carrusel-image" /></div>
+        <div><img src={img2} alt="Imagen 2" className="carrusel-image" /></div>
+        <div><img src={img3} alt="Imagen 3" className="carrusel-image" /></div>
+        <div><img src={img4} alt="Imagen 4" className="carrusel-image" /></div>
       </Slider>
     </div>
   );

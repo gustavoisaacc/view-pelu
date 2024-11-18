@@ -29,20 +29,24 @@ function Categories() {
   if (data)
     return (
       <>
-        <Button route="/dashboard" className=" inline-block  ml-16 mt-10 bg-primary">
-          Volver
-        </Button>
-        <div className="max-w-screen-xl m-auto p-16">
-          <h1 className="my-5">Categorias</h1>
-          <Button route="?newCategory=true" colorType="primary">Crear Categoria</Button>
-        </div>
-        {/* Listado de categorias */}
+        <div className="flex justify-center items-center bg-lightpurple">
+          <div className="w-full max-w-4xl">
+            <h1 className="text-4xl font-black flex justify-center">CATEGORIAS</h1>
+            <div className=" flex justify-around p-8">
+              <Button route="/dashboard" className=" bg-primary w-1/5 flex justify-center">
+                Volver
+              </Button>
+              <Button route="?newCategory=true" colorType="primary" className="w-2/4 justify-center flex">Crear Categoria</Button>
+            </div>
+            {/* Listado de categorias */}
 
-        <div className="max-wmax-w-screen-2xl m-auto px-16">
-          <ListCategori data={data} mutate={mutate} />
-        </div>
+            <div className="max-wmax-w-screen-2xl m-auto px-16 pt-2 pb-40">
+              <ListCategori data={data} mutate={mutate} />
+            </div>
 
-        <FormModal />
+            <FormModal />
+          </div>
+        </div>
       </>
     );
 }
