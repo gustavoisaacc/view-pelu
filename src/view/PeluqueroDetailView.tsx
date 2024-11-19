@@ -23,7 +23,7 @@ function PeluqueroDetailView() {
   if (data)
     return (
       <>
-        <div className="">
+        <div className="bg-white">
           <CardProfile data={data} />
           <CardContainer className="mt-5">
             <div className="grid w-full grid-cols-2">
