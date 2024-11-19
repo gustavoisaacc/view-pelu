@@ -14,7 +14,9 @@ function Dashboard() {
   return (
     <>
       <div className="grid place-content-center w-full max-w-full bg-lightpurple">
-        <h1 className="text-center py-4 text-4xl font-semibold text-white">Panel de Administracion</h1>
+        <h1 className="text-center py-4 text-4xl font-semibold text-white">
+          Panel de Administracion
+        </h1>
         <section className="flex flex-col lg:flex-row gap-5">
           <Button route="/cita" colorType="primary">
             Crear cita
@@ -22,10 +24,12 @@ function Dashboard() {
           <Button route="/category" colorType="primary">
             Crear categoría
           </Button>
-          <Button route="/cita" colorType="primary">
+          <Button route="/Detail" colorType="primary">
             Turnos reservados
           </Button>
-          <Button route="/edit-profile/" colorType="primary">Editar perfil</Button>
+          <Button route="/edit-profile/" colorType="primary">
+            Editar perfil
+          </Button>
         </section>
         <section className="flex items-center mt-10 space-x-8 bg-primary p-6 shadow-md rounded-lg w-full mx-auto">
           <div className="rrelative h-40 w-40 overflow-hidden rounded-full shadow-lg">

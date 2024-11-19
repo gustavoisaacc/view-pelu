@@ -46,9 +46,7 @@ function ListService({ dataService, mutate }: ListServiceType) {
                   <p className="text-sm text-white">
                     Duracion: {service.duration}
                   </p>
-                  <p className="text-sm text-white">
-                    Precio: ${service.price}
-                  </p>
+                  <p className="text-sm text-white">Precio: ${service.price}</p>
                 </div>
               </div>
               <div className="flex shrink-0 items-center gap-x-6">
@@ -73,7 +71,7 @@ function ListService({ dataService, mutate }: ListServiceType) {
                       <MenuItem>
                         <Link
                           to={`/category/${service._id}`}
-                          className="block px-3 py-1 text-sm leading-6 text-white border-b border-white" 
+                          className="block px-3 py-1 text-sm leading-6 text-white border-b border-white"
                         >
                           Ver Servicios
                         </Link>
@@ -105,7 +103,7 @@ function ListService({ dataService, mutate }: ListServiceType) {
           ))}
         </ul>
       ) : (
-        <h1 className="text-gray-400 font-semibold text-4xl text-center">
+        <h1 className="text-gray-200 font-semibold text-4xl text-center mt-10">
           Aun no hay Servicios
         </h1>
       )}

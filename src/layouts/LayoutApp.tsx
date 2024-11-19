@@ -19,7 +19,7 @@ function LayoutApp() {
   if (data)
     return (
       <div className="min-h-screen flex flex-col">
-        <header className="bg-darkpurple py-5 bg-lightpurple">
+        <header className="bg-darkpurple  bg-lightpurple">
           <section className="max-w-screen-2xl m-auto flex flex-col lg:flex-row items-center justify-between">
             <div className="w-64">
               <Link to="/">
@@ -33,12 +33,13 @@ function LayoutApp() {
         </header>
 
         {/* Asegúrate de que el main tenga un ancho del 100% */}
-        <main className="flex-grow w-full max-w-screen-2xl m-auto">
+        <main className="flex-grow w-full max-w-screen-2xl m-auto bg-lightpurple">
           <Outlet />
         </main>
 
         <footer className="text-center py-5 bg-lightpurple footer-copyright">
-        &copy; {new Date().getFullYear()} Tu Empresa. Todos los derechos reservados.
+          &copy; {new Date().getFullYear()} Tu Empresa. Todos los derechos
+          reservados.
         </footer>
 
         <ToastContainer pauseOnFocusLoss={false} pauseOnHover={false} />

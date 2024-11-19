@@ -72,35 +72,47 @@ function NewCiteView() {
   };
 
   return (
-    <div className="bg-lightpurple">
-    <div className="max-w-xl m-auto w-[90%]">
-      <Button route="/dashboard" className=" flex justify-center bg-primary hover:bg-secondary">
+    <div className="bg-lightpurple px-20">
+      <Button
+        route="/dashboard"
+        className=" flex justify-center bg-primary hover:bg-secondary"
+      >
         Volver
       </Button>
-      <form
-        onSubmit={handleSubmit(handleAppointment)}
-        className=" mt-10 bg-primary shadow-lg round-lg max-w-xl"
-      >
-        <div className="bg-primary h-auto w-full p-5 ">
-          <h1 className="text-4xl text-center font-black text-white">
-            Crear citas
-          </h1>
+      <div className="m-auto  flex mt-10 gap-10 flex-col lg:flex-row">
+        <form
+          onSubmit={handleSubmit(handleAppointment)}
+          className=" bg-primary shadow-lg round-lg  lg:w-[600px] flex-grow-0"
+        >
+          <div className="bg-primary h-auto w-full p-5 ">
+            <h1 className="text-4xl text-center font-black text-white">
+              Crear citas
+            </h1>
+          </div>
+          <div className=" p-5">
+            <AppointmentForm
+              register={register}
+              errors={errors}
+              setValue={setValue}
+            />
+            <button
+              type="submit"
+              className="block w-full bg-lightpurple hover:bg-secondary mt-5 text-center text-white font-bold py-8 px-4 rounded shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-75 transition  duration-300 ease-in-outs"
+            >
+              Guardar
+            </button>
+          </div>
+        </form>
+        <div className="lg:max-h-[500px] lg:overflow-y-auto lg:scroll-m-1 mt-0">
+          {data && data.length > 0 ? (
+            <ListAppointement data={data} />
+          ) : (
+            <h1 className="text-gray-200 font-semibold text-4xl text-center  ">
+              Aun no hay categorias
+            </h1>
+          )}
         </div>
-        <div className=" p-5">
-          <AppointmentForm
-            register={register}
-            errors={errors}
-            setValue={setValue}
-          />
-          <button
-            type="submit"
-            className="block w-full bg-lightpurple hover:bg-secondary mt-5 text-center text-white font-bold py-8 px-4 rounded shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-75 transition  duration-300 ease-in-outs"
-          >
-            Guardar
-          </button>
-        </div>
-      </form>
-    </div>
+      </div>
     </div>
   );
 }

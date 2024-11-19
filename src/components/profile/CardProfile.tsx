@@ -33,10 +33,6 @@ function CardProfile({ data }: CardProfileType) {
         <Badge variant="default">Cortes Modernos</Badge>
         <Badge variant="default">Cortes Modernos</Badge>
       </div>
-      <Button variant="outline" className="mt-5 border-blue-500 text-blue-500">
-        <Calendar className="h-4 w-4" />
-        Element
-      </Button>
     </CardContainer>
   );
 }

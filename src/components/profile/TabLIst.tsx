@@ -21,18 +21,7 @@ const TabList = ({ selectedTab, data }: TabListProps) => {
           <div>
             <h3 className="text-lg font-semibold mb-5">Galería de Trabajos</h3>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-              {[].map((i) => (
-                <div
-                  key={i}
-                  className="aspect-square overflow-hidden rounded-lg bg-purple-100"
-                >
-                  <img
-                    alt={`Trabajo ${i}`}
-                    className="h-full w-full object-cover"
-                    src={`/placeholder.svg?height=300&width=300`}
-                  />
-                </div>
-              ))}
+              <p className="py-10 text-center text-gray-400">En proceso...</p>
             </div>
           </div>
         )}
@@ -41,7 +30,7 @@ const TabList = ({ selectedTab, data }: TabListProps) => {
           <div className="">
             <h3 className="text-lg font-semibold mb-5">Agendar Cita</h3>
             <div className="space-y-4 w-full">
-              {data && data.appointments ? (
+              {data && data.appointments && data.appointments.length > 0 ? (
                 <>
                   {data.appointments.map((item) => (
                     <CardContainer className="p-2 bg-slate-300 flex justify-between items-center">
@@ -66,7 +55,9 @@ const TabList = ({ selectedTab, data }: TabListProps) => {
                   ))}
                 </>
               ) : (
-                <p>NO hay turnos disponuibles</p>
+                <p className="py-10 text-center text-gray-400">
+                  No hay turnos disponuibles
+                </p>
               )}
             </div>
           </div>
