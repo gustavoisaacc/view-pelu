@@ -8,7 +8,7 @@ import {
   Transition,
   TransitionChild,
 } from "@headlessui/react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   getAppointmentById,
   getCategoryByIdAppoitment,
@@ -16,6 +16,7 @@ import {
 import CardContainer from "../CardContainer";
 import { formatDate } from "../../hooks/date";
 import { createReservation } from "../../api/DetaillApi";
+import { toast } from "react-toastify";
 
 interface FormData {
   customerEmail: string;
@@ -26,7 +27,7 @@ export default function ModalViewAppointment() {
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
-  console.log("🚀 ~ ModalViewAppointment ~ params:", params);
+
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedServices, setSelectedServices] = useState<
     {
@@ -82,13 +83,17 @@ export default function ModalViewAppointment() {
     });
   };
 
+  const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: createReservation,
     onError: (error) => {
       console.log("🚀 ~ ModalViewAppointment ~ error:", error);
+      toast.error(error);
     },
     onSuccess: (data) => {
-      console.log("🚀 ~ ModalViewAppointment ~ data:", data);
+      queryClient.invalidateQueries({ queryKey: ["client"] });
+      toast.success(data);
+      reset();
     },
   });
 
@@ -102,7 +107,6 @@ export default function ModalViewAppointment() {
     };
     mutate(elem);
     // Aquí puedes enviar los datos al backend
-    reset();
     setSelectedCategory("");
     setSelectedServices([]);
     navigate(location.pathname);

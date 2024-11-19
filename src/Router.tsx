@@ -16,7 +16,7 @@ import ProfileView from "./view/ProfileView";
 import PeluqueroDetailView from "./view/PeluqueroDetailView";
 import NotFound from "./components/home/pages/NotFound";
 import Home from "./components/home/pages/Home";
-
+import DetailView from "./view/DetailView";
 
 function Router() {
   return (
@@ -28,6 +28,7 @@ function Router() {
           <Route path="/category/:categoryId" element={<Service />} />
           <Route path="/edit-profile" element={<EditarProfileView />} />
           <Route path="/cita" element={<NewCiteView />} />
+          <Route path="/detail" element={<DetailView />} />
         </Route>
         <Route element={<AuthLayout />}>
           <Route path="/profile" element={<ProfileView />} />
@@ -46,13 +47,10 @@ function Router() {
             path="/auth/forgot-password"
             element={<ForgotPasswordView />}
           />
-          <Route
-            path="/"
-            element={<Home />}
-          />
+          <Route path="/" element={<Home />} />
           <Route path="/auth/new-password" element={<NewPasswordView />} />
         </Route>
-        <Route path="*" element={<NotFound/>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

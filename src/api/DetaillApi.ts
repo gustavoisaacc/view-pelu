@@ -14,3 +14,16 @@ export const createReservation = async (formData: Details) => {
     }
   }
 };
+
+export const getAllDetailAppointmentReservation = async () => {
+  try {
+    const { data } = await api("/detail ");
+    console.log("🚀 ~ getAllDetailAppointmentReservation ~ data:", data);
+    return data;
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      console.log(error.response.data);
+      return error.response.data;
+    }
+  }
+};
