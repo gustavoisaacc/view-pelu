@@ -8,7 +8,6 @@ type AvatarProfileType = {
 };
 
 function AvatarProfile({ data }: AvatarProfileType) {
-  //get user avatar
   const { data: dataAvatar } = useQuery({
     queryKey: ["avatar", data?._id],
     queryFn: getUserAvatar,
@@ -17,22 +16,24 @@ function AvatarProfile({ data }: AvatarProfileType) {
   });
 
   return (
-    <div className="flex items-center mt-10 space-x-8 bg-white p-6 shadow-md rounded-lg w-full mx-auto justify-between">
-      <div className="flex items-center gap-5">
-        <div className="relative overflow-hidden rounded-full shadow-lg">
-          <img
-            src={dataAvatar || "https://via.placeholder.com/150"}
-            alt="Foto de perfil"
-            className="h-full w-full object-cover object-top"
-          />
-        </div>
-        <p className="absolute p-4 flex items-center justify-center text-white bg-primary/50 text-sm font-semibold rounded-full">
+    <div className="flex flex-col items-center bg-white py-6 shadow-md rounded-lg w-full max-w-md mx-auto space-y-6">
+      <div className="h-32 w-32 relative overflow-hidden rounded-full shadow-lg">
+        <img
+          src={dataAvatar || "https://via.placeholder.com/150"}
+          alt="Foto de perfil"
+          className="h-full w-full object-cover object-top"
+        />
+      </div>
+      <div className="flex flex-col items-center space-y-4">
+        <p className="text-2xl font-semibold text-secondary text-center">
           {data?.name} {data?.lastName}
         </p>
+        <EditPhotoProfile />
       </div>
-      <EditPhotoProfile />
     </div>
   );
 }
 
 export default AvatarProfile;
+
+

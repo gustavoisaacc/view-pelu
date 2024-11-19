@@ -11,7 +11,6 @@ type FormValues = {
 
 function EditPhotoProfile() {
   const { register, handleSubmit } = useForm<FormValues>();
-
   const navigate = useNavigate();
 
   // Mutación para manejar el envío del archivo
@@ -39,22 +38,22 @@ function EditPhotoProfile() {
 
   return (
     <form
-      className="flex flex-col w-full space-y-5"
+      className="flex flex-col items-center w-full space-y-5"
       onSubmit={handleSubmit(onSubmit)}
     >
       <input
         type="file"
         accept="image/*"
         {...register("image", { required: "La imagen es obligatoria" })}
+        className="w-full max-w-sm text-sm sm:text-base border rounded-lg p-2"
       />
       <input
         type="submit"
         value="Enviar"
-        className="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none"
+        className="w-[90%] max-w-sm px-4 py-2 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-secondary focus:outline-none"
       />
-      {/* Muestra un mensaje de error si falla la subida */}
       {error && (
-        <p className="text-red-500">
+        <p className="text-red-500 text-sm sm:text-base text-center">
           Error al subir la imagen: {(error as Error).message}
         </p>
       )}
@@ -63,3 +62,4 @@ function EditPhotoProfile() {
 }
 
 export default EditPhotoProfile;
+
