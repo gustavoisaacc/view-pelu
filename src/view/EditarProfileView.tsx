@@ -68,34 +68,38 @@ function EditarProfileView() {
     return (
       <>
         <div className="bg-lightpurple">
-          <h1 className=" text-6xl text-white capitalize font-semibold flex justify-center">
-            Editar Perfil
-          </h1>
-          <div className="max-w-screen-xl">
-            <Button route="/dashboard" className="flex justify-center ml-60 mb-10 mt-10 bg-primary w-1/5">
-              Volver
-            </Button>
-          </div>
-          <div className="max-w-screen-lg m-auto p-16 w-[90%] bg-primary">
-            <div className="mb-5">
-              <AvatarProfile data={data} />
-            </div>
-            <form onSubmit={onSubmit}>
-              <EditUser register={register} errors={errors} />
-              <button
-                type="submit"
-                className={`block w-full mt-5 text-center font-bold py-2 px-4 rounded shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-75 transition duration-300 ease-in-out 
-                ${isButtonDisabled
-                    ? "bg-lightpurple cursor-not-allowed text-white"
-                    : "bg-secondary hover:bg-darkpurple text-white"
-                  }`}
-                disabled={isButtonDisabled}
-              >
-                Guardar
-              </button>
-            </form>
-          </div>
-        </div>
+  <div className="max-w-screen-xl">
+    <Button
+      route="/dashboard"
+      className="flex justify-center mb-10 bg-primary w-52 ml-20 md:w-1/5 md:ml-60"
+    >
+      Volver
+    </Button>
+  </div>
+  <div className="max-w-screen-lg m-auto p-4 md:p-16 w-[90%] bg-primary">
+    <h1 className="text-3xl md:text-6xl text-white capitalize font-semibold flex justify-center">
+      Editar Perfil
+    </h1>
+    <div className="mb-5">
+      <AvatarProfile data={data} />
+    </div>
+    <form onSubmit={onSubmit}>
+      <EditUser register={register} errors={errors} />
+      <button
+        type="submit"
+        className={`block w-full mt-5 text-center font-bold py-2 px-4 rounded shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-75 transition duration-300 ease-in-out 
+        ${
+          isButtonDisabled
+            ? "bg-lightpurple cursor-not-allowed text-white"
+            : "bg-secondary hover:bg-darkpurple text-white"
+        }`}
+        disabled={isButtonDisabled}
+      >
+        Guardar
+      </button>
+    </form>
+  </div>
+</div>
       </>
     );
 }

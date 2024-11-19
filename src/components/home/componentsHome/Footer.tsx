@@ -1,6 +1,7 @@
 import React from 'react';
 import "../style/footer.css"
 import img5 from "../image/grupo.png"
+import CopyRigth from './CopyRigth';
 
 
 const Footer = () => {
@@ -13,9 +14,7 @@ const Footer = () => {
                     <p className="footer-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil consequuntur nemo quibusdam enim eaque animi quia pariatur. Est, explicabo perspiciatis, aperiam facilis libero, in doloremque suscipit esse totam neque architecto..</p>
                 </div>
             </div>
-            <div className="footer-copyright">
-                &copy; {new Date().getFullYear()} Tu Empresa. Todos los derechos reservados.
-            </div>
+            <CopyRigth/>
         </footer>
     );
 };
