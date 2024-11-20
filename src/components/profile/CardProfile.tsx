@@ -9,8 +9,8 @@ type CardProfileType = {
 };
 function CardProfile({ data }: CardProfileType) {
   return (
-    <div className="flex justify-center items-center min-h-screen px-4">
-      <CardContainer className=" bg-purple-50 w-full max-w-screen-lg shadow-lg rounded-3xl p-10 flex flex-col items-center h-[90vh] lg:h-[70vh]">
+    <div className="flex justify-center items-center min-h-full">
+      <CardContainer className=" bg-purple-50 w-full max-w-screen-lg shadow-lg rounded-3xl p-10 flex flex-col items-center ">
         <div className="relative h-auto w-56 overflow-hidden rounded-full shadow-md">
           <img
             src={data.avatarUrl || "https://via.placeholder.com/150"}
@@ -26,7 +26,8 @@ function CardProfile({ data }: CardProfileType) {
             Profesión: {data?.service}
           </h3>
           <p className="text-sm text-black mt-2">
-            <span className="font-semibold text-center">Contacto:</span> {data?.phone}
+            <span className="font-semibold text-center">Contacto:</span>{" "}
+            {data?.phone}
           </p>
         </div>
         <div className="flex flex-wrap justify-center gap-2 mt-4">
@@ -40,4 +41,3 @@ function CardProfile({ data }: CardProfileType) {
 }
 
 export default CardProfile;
-

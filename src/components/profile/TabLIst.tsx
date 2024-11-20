@@ -5,6 +5,7 @@ import { Button } from "../ButtonP";
 import CardContainer from "../CardContainer";
 import ModalViewAppointment from "./ModalViewAppointment";
 import { useQueryClient } from "@tanstack/react-query";
+import { Clock, Calendar, User, Scissors, Phone, Clock3 } from "lucide-react";
 
 type TabListProps = {
   selectedTab: string;
@@ -12,36 +13,55 @@ type TabListProps = {
 };
 
 const TabList = ({ selectedTab, data }: TabListProps) => {
+  console.log("🚀 ~ TabList ~ data:", data);
   const navigate = useNavigate();
   const quryClient = useQueryClient();
   return (
     <div>
       <div className="mt-4">
-        {selectedTab === "images" && (
+        {/* {selectedTab === "images" && (
           <div>
             <h3 className="text-lg font-semibold mb-5">Galería de Trabajos</h3>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
               <p className="py-10 text-center text-gray-400">En proceso...</p>
             </div>
           </div>
-        )}
+        )} */}
 
         {selectedTab === "appointments" && (
           <div className="">
-            <h3 className="text-lg font-semibold mb-5">Agendar Cita</h3>
+            <div className="bg-[#9c27b0] text-white rounded-t-lg">
+              <h3 className="text-2xl font-bold text-center">Agendar Cita</h3>
+            </div>
             <div className="space-y-4 w-full">
               {data && data.appointments && data.appointments.length > 0 ? (
                 <>
-                  {data.appointments.map((item) => (
-                    <CardContainer className="p-2 bg-slate-300 flex justify-between items-center">
-                      <div>
-                        <h3>{formatDate(item.date)}</h3>
-                        <p>{item.startTime}</p>
-                        <p>{item.delay} min</p>
+                  {data.appointments.map((appointment) => (
+                    <CardContainer className="p-5 bg-white flex justify-between items-center">
+                      <div className="flex flex-col gap-2 text-sm text-gray-600">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4 text-[#9c27b0]" />
+                          <span>{formatDate(appointment.date)}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Clock className="w-4 h-4 text-[#9c27b0]" />
+                          <span>{appointment.startTime}</span>
+                        </div>
+                        <div className="flex items-center justify-between bg-[#f3e5f5] rounded-lg">
+                          <div className="flex items-center gap-2">
+                            <Clock3 className="w-4 h-4 text-[#9c27b0]" />
+                            <span className="font-sm text-sm text-[#4a148c]">
+                              Tiempo de espera estimado:
+                            </span>
+                          </div>
+                          <span className="font-bold text-[#9c27b0]">
+                            {appointment.delay} min
+                          </span>
+                        </div>
                       </div>
                       <Button
                         onClick={() => {
-                          navigate(`?view-appointment=${item._id}`);
+                          navigate(`?view-appointment=${appointment._id}`);
                           quryClient.invalidateQueries({
                             queryKey: ["appointment"],
                           });

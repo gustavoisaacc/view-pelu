@@ -8,7 +8,7 @@ import TabList from "../components/profile/TabLIst";
 import TabTrigger from "../components/profile/TabTrigger";
 import { useState } from "react";
 function PeluqueroDetailView() {
-  const [selectedTab, setSelectedTab] = useState("images");
+  const [selectedTab, setSelectedTab] = useState("appointments");
 
   const { id } = useParams();
 
@@ -23,27 +23,10 @@ function PeluqueroDetailView() {
   if (data)
     return (
       <>
-        <div className="bg-white">
+        <div className="w-[90%] m-auto pb-10">
           <CardProfile data={data} />
-          <CardContainer className="mt-5">
-            <div className="grid w-full grid-cols-2">
-              <TabTrigger
-                selectedTab={selectedTab}
-                setSelectedTab={setSelectedTab}
-                value="images"
-              >
-                Imagen
-              </TabTrigger>
-              <TabTrigger
-                selectedTab={selectedTab}
-                setSelectedTab={setSelectedTab}
-                value="appointments"
-              >
-                Turnos
-              </TabTrigger>
-            </div>
-          </CardContainer>
-          <CardContainer className="mt-5 p-5 gap-5">
+
+          <CardContainer className="mt-5 p-5 gap-5 bg-purple-50">
             <TabList data={data} selectedTab={selectedTab} />
           </CardContainer>
         </div>
