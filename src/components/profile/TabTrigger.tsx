@@ -16,7 +16,7 @@ function TabTrigger({
   return (
     <button
       className={`p-2 text-center rounded-lg focus:outline-none ${
-        selectedTab === value ? "bg-purple-600 text-white" : "bg-gray-200"
+        selectedTab === value ? "bg-primary text-white" : "bg-secondary"
       }`}
       onClick={() => setSelectedTab(value)}
     >

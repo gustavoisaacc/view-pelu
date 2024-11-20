@@ -7,6 +7,8 @@ import CardContainer from "../components/CardContainer";
 import TabList from "../components/profile/TabLIst";
 import TabTrigger from "../components/profile/TabTrigger";
 import { useState } from "react";
+import Button from "../components/Button";
+
 function PeluqueroDetailView() {
   const [selectedTab, setSelectedTab] = useState("images");
 
@@ -20,34 +22,40 @@ function PeluqueroDetailView() {
 
   if (isLoading) return <p>Cargando...</p>;
   if (isError) return <p>Error al cargar el perfil.</p>;
+
   if (data)
     return (
-      <>
-        <div className="">
+      <div className="flex justify-center min-h-screen bg-lightpurple">
+        <div className="w-full max-w-screen-lg">
+        <Button
+      route="/profile"
+      className="flex justify-center text-white bg-primary w-52 ml-20 md:w-1/5 md:h-10 p-2 rounded-md hover:bg-secondary transition duration-300">
+      Volver
+    </Button>
           <CardProfile data={data} />
-          <CardContainer className="mt-5">
-            <div className="grid w-full grid-cols-2">
-              <TabTrigger
+          <CardContainer>
+            <div className="grid w-full grid-col p-2 text-center rounded-lg font-black text-white">
+              {/* <TabTrigger
                 selectedTab={selectedTab}
                 setSelectedTab={setSelectedTab}
                 value="images"
               >
                 Imagen
-              </TabTrigger>
+              </TabTrigger> */}
               <TabTrigger
                 selectedTab={selectedTab}
                 setSelectedTab={setSelectedTab}
                 value="appointments"
               >
-                Turnos
+                TURNOS
               </TabTrigger>
             </div>
           </CardContainer>
-          <CardContainer className="mt-5 p-5 gap-5">
+          <CardContainer className="mt-6 p-5 gap-5">
             <TabList data={data} selectedTab={selectedTab} />
           </CardContainer>
         </div>
-      </>
+      </div>
     );
 }
 

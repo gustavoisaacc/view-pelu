@@ -17,6 +17,7 @@ function NewCiteView() {
   const paramsQuery = new URLSearchParams(location.search);
   const params = paramsQuery.get("appointmentId");
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -35,14 +36,11 @@ function NewCiteView() {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
-    mutationFn: ({
-      formData,
-      paramsId,
-    }: {
+    mutationFn: (args: {
       formData: AppointmentFormData;
       paramsId: string;
     }) => {
-      // Si paramsId está presente, realiza la actualización; de lo contrario, crea un nuevo turno
+      const { formData, paramsId } = args;
       return paramsId
         ? updateAppointment({ id: paramsId, formData })
         : createAppointment(formData);
@@ -63,54 +61,56 @@ function NewCiteView() {
 
   const handleAppointment = (formData: AppointmentFormData) => {
     if (params) {
-      // Si hay un ID de turno, intenta actualizar
       mutate({ formData, paramsId: params });
     } else {
-      // De lo contrario, crea uno nuevo
       mutate({ formData, paramsId: "" });
     }
   };
 
   return (
-    <div className="bg-lightpurple px-20">
-      <Button
-        route="/dashboard"
-        className=" flex justify-center bg-primary hover:bg-secondary"
-      >
-        Volver
-      </Button>
-      <div className="m-auto  flex mt-10 gap-10 flex-col lg:flex-row">
-        <form
-          onSubmit={handleSubmit(handleAppointment)}
-          className=" bg-primary shadow-lg round-lg  lg:w-[600px] flex-grow-0"
+    <div className="bg-lightpurple min-h-screen flex justify-center items-center px-4">
+      <div className="w-full max-w-screen-lg">
+        <Button
+          route="/dashboard"
+          className="mb-6 flex justify-center bg-primary hover:bg-secondary md:w-48"
         >
-          <div className="bg-primary h-auto w-full p-5 ">
-            <h1 className="text-4xl text-center font-black text-white">
-              Crear citas
-            </h1>
+          Volver
+        </Button>
+        <div className="flex flex-col lg:flex-row gap-10 bg-purple-300 shadow-lg rounded-lg p-6">
+          {/* Formulario */}
+          <form
+            onSubmit={handleSubmit(handleAppointment)}
+            className="bg-primary shadow-lg rounded-lg lg:w-1/2 w-full flex-grow"
+          >
+            <div className="bg-primary h-auto w-full p-5 rounded-t-lg">
+              <h1 className="text-4xl text-center font-black text-white">
+                Crear citas
+              </h1>
+            </div>
+            <div className="p-5">
+              <AppointmentForm
+                register={register}
+                errors={errors}
+                setValue={setValue}
+              />
+              <button
+                type="submit"
+                className="block w-full bg-lightpurple hover:bg-secondary mt-5 text-center text-white font-bold py-2 px-4 rounded shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-75 transition duration-300 ease-in-out"
+              >
+                Guardar
+              </button>
+            </div>
+          </form>
+          {/* Lista de citas */}
+          <div className="lg:w-1/2 w-full lg:max-h-[500px] lg:overflow-y-auto lg:scroll-m-1">
+            {data && data.length > 0 ? (
+              <ListAppointement data={data} />
+            ) : (
+              <h1 className="text-gray-400 font-semibold text-2xl text-center">
+                Aún no hay categorías
+              </h1>
+            )}
           </div>
-          <div className=" p-5">
-            <AppointmentForm
-              register={register}
-              errors={errors}
-              setValue={setValue}
-            />
-            <button
-              type="submit"
-              className="block w-full bg-lightpurple hover:bg-secondary mt-5 text-center text-white font-bold py-8 px-4 rounded shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-75 transition  duration-300 ease-in-outs"
-            >
-              Guardar
-            </button>
-          </div>
-        </form>
-        <div className="lg:max-h-[500px] lg:overflow-y-auto lg:scroll-m-1 mt-0">
-          {data && data.length > 0 ? (
-            <ListAppointement data={data} />
-          ) : (
-            <h1 className="text-gray-200 font-semibold text-4xl text-center  ">
-              Aun no hay categorias
-            </h1>
-          )}
         </div>
       </div>
     </div>

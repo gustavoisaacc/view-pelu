@@ -42,7 +42,7 @@ export const NavMenu = ({ name }: NavMenuProps) => {
             <Link to="/profile" className="block p-2 border-b border-white hover:text-purple-950">
               Mi Perfil
             </Link>
-            <Link to="/" className="block p-2 border-b border-white hover:text-purple-950">
+            <Link to="/Detail" className="block p-2 border-b border-white hover:text-purple-950">
               Mis citas
             </Link>
             <button

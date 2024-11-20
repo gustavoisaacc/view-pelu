@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { createAccount } from "../../api/AuthApi";
 import { toast } from "react-toastify";
+import Button from "../../components/Button";
 
 export default function RegisterView() {
   const initialValues: UserRegistrationForm = {
@@ -54,14 +55,14 @@ export default function RegisterView() {
         className=" bg-white mt-10"
         noValidate
       >
-        <div className="bg-lightpurple h-auto w-full p-5 ">
+        <div className="p-10 space-y-8">
+        <div className="bg-primary h-auto w-full p-5 ">
           <h1 className="text-4xl font-black text-white">Crear Cuenta</h1>
           <p className="text-2xl font-light  text-white mt-5">
             Llena el formulario para {""}
             <span className=" text-gray-800 font-bold"> crear tu cuenta</span>
           </p>
         </div>
-        <div className="p-10 space-y-8">
           <div className="flex flex-col gap-5">
             <label className="font-normal text-lg" htmlFor="email">
               Email

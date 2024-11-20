@@ -19,9 +19,9 @@ const TabList = ({ selectedTab, data }: TabListProps) => {
       <div className="mt-4">
         {selectedTab === "images" && (
           <div>
-            <h3 className="text-lg font-semibold mb-5">Galería de Trabajos</h3>
+            <h3 className="text-lg font-semibold mb-5 text-white">Galería de Trabajos</h3>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-              <p className="py-10 text-center text-gray-400">En proceso...</p>
+              <p className="py-10 text-center text-black">En proceso...</p>
             </div>
           </div>
         )}
@@ -33,7 +33,7 @@ const TabList = ({ selectedTab, data }: TabListProps) => {
               {data && data.appointments && data.appointments.length > 0 ? (
                 <>
                   {data.appointments.map((item) => (
-                    <CardContainer className="p-2 bg-slate-300 flex justify-between items-center">
+                    <CardContainer className="p-2 bg-purple-300 flex justify-between items-center">
                       <div>
                         <h3>{formatDate(item.date)}</h3>
                         <p>{item.startTime}</p>
@@ -47,7 +47,7 @@ const TabList = ({ selectedTab, data }: TabListProps) => {
                           });
                         }}
                         variant="outline"
-                        className="text-lightpurple border-lightpurple"
+                        className="text-primary border-primary"
                       >
                         Reservar
                       </Button>
