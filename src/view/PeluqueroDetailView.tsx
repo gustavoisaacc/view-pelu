@@ -10,7 +10,7 @@ import { useState } from "react";
 import Button from "../components/Button";
 
 function PeluqueroDetailView() {
-  const [selectedTab, setSelectedTab] = useState("images");
+  const [selectedTab, setSelectedTab] = useState("appointments");
 
   const { id } = useParams();
 

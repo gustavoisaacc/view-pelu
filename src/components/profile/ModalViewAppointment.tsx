@@ -17,6 +17,7 @@ import CardContainer from "../CardContainer";
 import { formatDate } from "../../hooks/date";
 import { createReservation } from "../../api/DetaillApi";
 import { toast } from "react-toastify";
+import { Calendar, Clock } from "lucide-react";
 
 interface FormData {
   customerEmail: string;
@@ -161,21 +162,24 @@ export default function ModalViewAppointment() {
                 >
                   Turno
                 </DialogTitle>
-                <CardContainer className="p-5">
-                  <h3 className="font-semibold text-xl">
-                    {formatDate(data.date)}
-                  </h3>
-                  <p>
-                    <strong>HORA:</strong> {data.startTime}
-                  </p>
-                  <p>
-                    <strong>DEMORA:</strong> {data.delay} min
-                  </p>
-                </CardContainer>
+
+                <div className="grid gap-2 text-sm">
+                  <div className="flex items-center gap-2 text-[#9c27b0]">
+                    <Calendar className="h-4 w-4" />
+                    <span>{formatDate(data.date)}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[#9c27b0]">
+                    <Clock className="h-4 w-4" />
+                    <span>HORA: {data.startTime}</span>
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    DEMORA: {data.delay}
+                  </div>
+                </div>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <select
-                    className="w-full mt-5 p-3"
+                    className="w-full mt-5 p-3 border border-b-gray-300"
                     onChange={(e) => handleCategoryChange(e.target.value)}
                     defaultValue=""
                   >
