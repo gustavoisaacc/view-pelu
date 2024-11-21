@@ -20,6 +20,7 @@ import {
   getServiceById,
   updateService,
 } from "../../api/ServiceApi";
+import HairSalonSpinner from "../Spinner";
 
 const initialValue: ServiceFormData = {
   name: "",
@@ -107,7 +108,8 @@ export default function FormServiceModal() {
     });
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <HairSalonSpinner />;
+
   return (
     <>
       <Transition appear show={show} as={Fragment}>

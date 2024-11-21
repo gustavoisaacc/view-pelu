@@ -7,6 +7,7 @@ import FormServiceModal from "../components/service/FormServerModal";
 import { deleteService, getService } from "../api/ServiceApi";
 import { toast } from "react-toastify";
 import { Plus } from "lucide-react";
+import HairSalonSpinner from "../components/Spinner";
 
 function Service() {
   const params = useParams();
@@ -35,7 +36,7 @@ function Service() {
     },
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <HairSalonSpinner />;
 
   if (dataCategory)
     return (

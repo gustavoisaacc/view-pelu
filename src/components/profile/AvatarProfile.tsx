@@ -2,19 +2,21 @@ import { getUserAvatar } from "../../api/ProfileAuth";
 import { useQuery } from "@tanstack/react-query";
 import { User } from "../../schema/auth";
 import EditPhotoProfile from "./EditPhotoProfile";
+import HairSalonSpinner from "../Spinner";
 
 type AvatarProfileType = {
   data: User;
 };
 
 function AvatarProfile({ data }: AvatarProfileType) {
-  const { data: dataAvatar } = useQuery({
+  const { data: dataAvatar, isLoading } = useQuery({
     queryKey: ["avatar", data?._id],
     queryFn: getUserAvatar,
     retry: false,
     refetchOnWindowFocus: false,
   });
 
+  if (isLoading) return <HairSalonSpinner />;
   return (
     <div className="flex flex-col items-center py-6  max-w-md mx-auto space-y-6">
       <div className="h-32 w-32 relative overflow-hidden rounded-full shadow-lg">

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getUserClient } from "../api/ProfileAuth";
 import { Navigate, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
+import HairSalonSpinner from "../components/Spinner";
 
 type ProfileViewType = {
   id: string;
@@ -15,11 +16,13 @@ function ProfileView() {
     queryKey: ["client"],
     queryFn: getUserClient,
     retry: 1,
+    refetchOnWindowFocus: false,
   });
+  console.log("🚀 ~ ProfileView ~ data:", data);
 
   const navigate = useNavigate();
 
-  if (isLoading) return <p>Cargando...</p>;
+  if (isLoading) return <HairSalonSpinner />;
   if (isError) return <Navigate to={"/404"} />;
 
   if (data)
@@ -32,31 +35,37 @@ function ProfileView() {
           Volver
         </Button>
         <div className="grid gap-6  sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 mb-12">
-          {data.map((item) => (
-            <div
-              key={item.id}
-              className="flex flex-col items-center bg-primary p-6 shadow-md rounded-lg space-y-4 w-full"
-            >
-              <div className="relative h-auto w-40 overflow-hidden rounded-full shadow-lg">
-                <img
-                  src={item.avatarUrl || "https://via.placeholder.com/150"}
-                  alt="Foto de perfil"
-                  className="h-full w-full object-cover object-top"
-                />
-              </div>
-              <p className="text-lg font-semibold text-center sm:text-left">
-                {item?.name} {item?.lastName}
-              </p>
-              <button
-                onClick={() =>
-                  navigate(`/${item.name}-${item.lastName}/${item.id}`)
-                }
-                className="bg-lightpurple w-1/2 text-white px-4 py-2 rounded-lg shadow-md hover:bg-secondary transition duration-300"
+          {data.length === 0 ? (
+            <p className="text-center text-gray-300 text-2xl mt-20">
+              No hay usuarios
+            </p>
+          ) : (
+            data.map((item) => (
+              <div
+                key={item.id}
+                className="flex flex-col items-center bg-primary p-6 shadow-md rounded-lg space-y-4 w-full"
               >
-                Ver
-              </button>
-            </div>
-          ))}
+                <div className="relative h-auto w-40 overflow-hidden rounded-full shadow-lg">
+                  <img
+                    src={item.avatarUrl || "https://via.placeholder.com/150"}
+                    alt="Foto de perfil"
+                    className="h-full w-full object-cover object-top"
+                  />
+                </div>
+                <p className="text-lg font-semibold text-center sm:text-left">
+                  {item?.name} {item?.lastName}
+                </p>
+                <button
+                  onClick={() =>
+                    navigate(`/${item.name}-${item.lastName}/${item.id}`)
+                  }
+                  className="bg-lightpurple w-1/2 text-white px-4 py-2 rounded-lg shadow-md hover:bg-secondary transition duration-300"
+                >
+                  Ver
+                </button>
+              </div>
+            ))
+          )}
         </div>
       </div>
     );

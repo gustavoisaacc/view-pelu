@@ -66,7 +66,7 @@ function NewCiteView() {
   };
 
   return (
-    <div className="bg-lightpurple min-h-screen flex justify-center items-center px-4">
+    <div className="bg-lightpurple min-h-full flex justify-center items-center px-4">
       <div className="w-full max-w-screen-lg">
         <Button
           route="/dashboard"

@@ -1,8 +1,6 @@
 import { Badge } from "../Badge";
 import { UserClient } from "../../schema/auth";
 import CardContainer from "../CardContainer";
-import { Button } from "../ButtonP";
-import { Calendar } from "lucide-react";
 
 type CardProfileType = {
   data: UserClient;

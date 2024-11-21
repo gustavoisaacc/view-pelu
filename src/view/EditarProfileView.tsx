@@ -8,6 +8,7 @@ import AvatarProfile from "../components/profile/AvatarProfile";
 import { useMutation } from "@tanstack/react-query";
 import { updateUser } from "../api/ProfileAuth";
 import { toast } from "react-toastify";
+import HairSalonSpinner from "../components/Spinner";
 
 function EditarProfileView() {
   const { data, isError, isLoading } = useAuth();
@@ -37,7 +38,6 @@ function EditarProfileView() {
       console.log("🚀 ~ EditarProfileView ~ error:", error);
     },
     onSuccess: (data) => {
-      console.log("🚀 ~ EditarProfileView ~ data:", data);
       toast.success(data);
     },
   });
@@ -63,7 +63,7 @@ function EditarProfileView() {
     }
   });
 
-  if (isLoading) return <p>cargando...</p>;
+  if (isLoading) return <HairSalonSpinner />;
   if (data)
     return (
       <>

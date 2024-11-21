@@ -18,6 +18,7 @@ import { formatDate } from "../../hooks/date";
 import { createReservation } from "../../api/DetaillApi";
 import { toast } from "react-toastify";
 import { Calendar, Clock } from "lucide-react";
+import HairSalonSpinner from "../Spinner";
 
 interface FormData {
   customerEmail: string;
@@ -116,7 +117,7 @@ export default function ModalViewAppointment() {
     (acc, service) => acc + service.price,
     0
   );
-  if (isLoading) return <p>Cargando...</p>;
+  if (isLoading) return <HairSalonSpinner />;
   if (error) return <p>Error al cargar: {error.message}</p>;
   if (!data) return null;
 

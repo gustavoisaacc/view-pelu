@@ -90,7 +90,7 @@ function ListCategori({ data, mutate }: ListCategoryProps) {
           ))}
         </ul>
       ) : (
-        <h1 className="text-gray-400 font-semibold text-4xl text-center">
+        <h1 className="h-[300px] grid place-content-center text-gray-200 font-semibold text-4xl text-center">
           Aun no hay categorias
         </h1>
       )}

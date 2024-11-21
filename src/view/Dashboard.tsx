@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getUserAvatar } from "../api/ProfileAuth";
 import Button from "../components/Button";
 import { useAuth } from "../hooks/useAuth";
+import HairSalonSpinner from "../components/Spinner";
 
 function Dashboard() {
   const { data, isError, isLoading } = useAuth();
@@ -11,6 +12,7 @@ function Dashboard() {
     retry: false,
     refetchOnWindowFocus: false,
   });
+  if (isLoading) return <HairSalonSpinner />;
   return (
     <>
       <div className="grid place-content-center w-full max-w-full bg-lightpurple">

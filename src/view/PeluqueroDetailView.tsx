@@ -7,6 +7,7 @@ import TabList from "../components/profile/TabLIst";
 import TabTrigger from "../components/profile/TabTrigger";
 import { useState } from "react";
 import Button from "../components/Button";
+import HairSalonSpinner from "../components/Spinner";
 
 function PeluqueroDetailView() {
   const [selectedTab, setSelectedTab] = useState("appointments");
@@ -20,7 +21,7 @@ function PeluqueroDetailView() {
   });
   console.log("🚀 ~ PeluqueroDetailView ~ data:", data);
 
-  if (isLoading) return <p>Cargando...</p>;
+  if (isLoading) return <HairSalonSpinner />;
   if (isError) return <p>Error al cargar el perfil.</p>;
 
   if (data)

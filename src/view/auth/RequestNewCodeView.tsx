@@ -38,14 +38,16 @@ export default function RequestNewCodeView() {
   };
 
   return (
-    <>
-      <h1 className="text-2xl font-black text-white">
-        Solicitar Código de Confirmación
-      </h1>
-      <p className="text-lg font-light text-white mt-5">
-        Coloca tu e-mail para recibir {""}
-        <span className=" text-lightpurple font-bold"> un nuevo código</span>
-      </p>
+    <div className="w-[90%] m-auto">
+      <div className="">
+        <h1 className="text-2xl font-black text-white">
+          Solicitar Código de Confirmación
+        </h1>
+        <p className="text-lg font-light text-white mt-5">
+          Coloca tu e-mail para recibir {""}
+          <span className=" text-lightpurple font-bold"> un nuevo código</span>
+        </p>
+      </div>
 
       <form
         onSubmit={handleSubmit(handleRequestCode)}
@@ -93,6 +95,6 @@ export default function RequestNewCodeView() {
           ¿Olvidaste tu contraseña? Reestablecer
         </Link>
       </nav>
-    </>
+    </div>
   );
 }

@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { AuthtenticateUser } from "../../api/AuthApi";
 import { toast } from "react-toastify";
-import Button from "../../components/Button";
 
 export default function LoginView() {
   const initialValues: UserLoginForm = {

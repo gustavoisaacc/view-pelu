@@ -32,11 +32,13 @@ export default function ConfirmAccountView() {
 
   return (
     <>
-      <h1 className="text-2xl font-black text-white">Confirma tu Cuenta</h1>
-      <p className="text-lg font-light text-white mt-5">
-        Ingresa el código que recibiste {""}
-        <span className=" text-fuchsia-500 font-bold"> por e-mail</span>
-      </p>
+      <div className="w-[90%] ml-20">
+        <h1 className="text-2xl font-black text-white">Confirma tu Cuenta</h1>
+        <p className="text-lg font-light text-white mt-5">
+          Ingresa el código que recibiste {""}
+          <span className=" text-waite font-bold"> por e-mail</span>
+        </p>
+      </div>
       <form className="space-y-8 p-10 bg-white mt-10">
         <label className="font-normal text-2xl text-center block">
           Código de 6 dígitos

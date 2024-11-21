@@ -6,6 +6,7 @@ import FormModal from "../components/category/FormModal";
 import ListCategori from "../components/category/ListCategori";
 import Button from "../components/Button";
 import { Plus } from "lucide-react";
+import HairSalonSpinner from "../components/Spinner";
 
 function Categories() {
   const { data, isLoading } = useQuery({
@@ -26,7 +27,7 @@ function Categories() {
     },
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <HairSalonSpinner />;
   if (data)
     return (
       <>
