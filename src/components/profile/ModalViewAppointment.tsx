@@ -98,15 +98,45 @@ export default function ModalViewAppointment() {
     },
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log("Servicios seleccionados:", selectedServices);
-    console.log("Datos del cliente y peluquero:", data);
+  const onSubmit = async (data: FormData) => {
+    const payload = {
+      items: selectedServices.map((service) => ({
+        id: service.serviceId,
+        title: service.name,
+        unit_price: service.price,
+        quantity: 1,
+      })),
+      customer: {
+        email: data.customerEmail,
+        phone: data.customerPhone,
+      },
+    };
+
+    try {
+      const response = await fetch("http://localhost:4000/create-payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      // Redirigir al usuario a la URL de Mercado Pago
+      if (result.url) {
+        window.location.href = result.url;
+      }
+    } catch (error) {
+      console.error("Error al crear el pago:", error);
+    }
+
     const elem = {
       userId: params.id,
       selectedServices,
       data,
     };
-    mutate(elem);
+    await mutate(elem);
     // Aquí puedes enviar los datos al backend
     setSelectedCategory("");
     setSelectedServices([]);
