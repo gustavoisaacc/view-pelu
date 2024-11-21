@@ -13,16 +13,18 @@ import {
   getAppointmentById,
   getCategoryByIdAppoitment,
 } from "../../api/Appointmentpi";
-
+import CardContainer from "../CardContainer";
 import { formatDate } from "../../hooks/date";
 import { createReservation } from "../../api/DetaillApi";
 import { toast } from "react-toastify";
 import { Calendar, Clock } from "lucide-react";
+import { paymerCreate } from "../../api/paymentApi";
 
 interface FormData {
   customerEmail: string;
   customerPhone: string;
 }
+
 export default function ModalViewAppointment() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -96,6 +98,16 @@ export default function ModalViewAppointment() {
       reset();
     },
   });
+  const { mutate: paymentMutate } = useMutation({
+    mutationFn: paymerCreate,
+    onError: (error) => {
+      console.log("🚀 ~ ModalViewAppointment ~ error:", error);
+    },
+    onSuccess: (data) => {
+      console.log("🚀 ~ ModalViewAppointment ~ data:", data);
+      window.location.href = data;
+    },
+  });
 
   const onSubmit = async (data: FormData) => {
     const payload = {
@@ -110,26 +122,7 @@ export default function ModalViewAppointment() {
         phone: data.customerPhone,
       },
     };
-
-    try {
-      const response = await fetch("http://localhost:4000/create-payment", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const result = await response.json();
-
-      // Redirigir al usuario a la URL de Mercado Pago
-      if (result.url) {
-        window.location.href = result.url;
-      }
-    } catch (error) {
-      console.error("Error al crear el pago:", error);
-    }
-
+    await paymentMutate(payload);
     const elem = {
       userId: params.id,
       selectedServices,
