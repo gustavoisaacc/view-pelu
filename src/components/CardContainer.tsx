@@ -8,7 +8,7 @@ type CardContainerProp = {
 function CardContainer({ children, className }: CardContainerProp) {
   return (
     <section
-      className={`shadow-md rounded-lg border-b border-gray-300 ${className}`}
+      className={`shadow-md rounded-lg bg-primary mb-4 ${className}`}
     >
       {children}
     </section>

@@ -21,9 +21,9 @@ const TabList = ({ selectedTab, data }: TabListProps) => {
       <div className="mt-4">
         {/* {selectedTab === "images" && (
           <div>
-            <h3 className="text-lg font-semibold mb-5">Galería de Trabajos</h3>
+            <h3 className="text-lg font-semibold mb-5 text-white">Galería de Trabajos</h3>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-              <p className="py-10 text-center text-gray-400">En proceso...</p>
+              <p className="py-10 text-center text-black">En proceso...</p>
             </div>
           </div>
         )} */}
@@ -36,6 +36,14 @@ const TabList = ({ selectedTab, data }: TabListProps) => {
             <div className="space-y-4 w-full">
               {data && data.appointments && data.appointments.length > 0 ? (
                 <>
+<<<<<<< HEAD
+                  {data.appointments.map((item) => (
+                    <CardContainer className="p-2 bg-purple-300 flex justify-between items-center">
+                      <div>
+                        <h3>{formatDate(item.date)}</h3>
+                        <p>{item.startTime}</p>
+                        <p>{item.delay} min</p>
+=======
                   {data.appointments.map((appointment) => (
                     <CardContainer className="p-5 bg-white flex justify-between items-center">
                       <div className="flex flex-col gap-2 text-sm text-gray-600">
@@ -58,6 +66,7 @@ const TabList = ({ selectedTab, data }: TabListProps) => {
                             {appointment.delay} min
                           </span>
                         </div>
+>>>>>>> 03f9a24802dda0a14915f0b0cf1317c07d9b364e
                       </div>
                       <Button
                         onClick={() => {
@@ -67,7 +76,7 @@ const TabList = ({ selectedTab, data }: TabListProps) => {
                           });
                         }}
                         variant="outline"
-                        className="text-lightpurple border-lightpurple"
+                        className="text-primary border-primary"
                       >
                         Reservar
                       </Button>

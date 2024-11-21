@@ -11,7 +11,8 @@ function DetailView() {
   console.log("🚀 ~ DetailView ~ data:", data);
   if (data)
     return (
-      <div className="w-full  mx-auto p-4 bg-purple-200 min-h-screen">
+      <div className="w-full  mx-auto p-4 min-h-screen">
+        <div className="max-w-screen-lg mx-auto p-4 bg-purple-300 rounded-lg">
         <Button
           route="/dashboard"
           className="mb-4 flex justify-center bg-primary hover:bg-secondary"
@@ -24,6 +25,7 @@ function DetailView() {
           </h3>
         </div>
         <ListAppointmentDetail data={data} />
+      </div>
       </div>
     );
 }
