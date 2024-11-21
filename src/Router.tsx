@@ -39,10 +39,7 @@ function Router() {
             element={<ConfirmAccountView />}
           />
           <Route path="/auth/request-code" element={<RequestNewCodeView />} />
-          <Route
-            path="/pelu/:namelastName/:id"
-            element={<PeluqueroDetailView />}
-          />
+          <Route path="/:namelastName/:id" element={<PeluqueroDetailView />} />
           <Route
             path="/auth/forgot-password"
             element={<ForgotPasswordView />}

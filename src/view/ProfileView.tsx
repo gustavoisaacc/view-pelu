@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getUserClient } from "../api/ProfileAuth";
 import { Navigate, useNavigate } from "react-router-dom";
-import CopyRigth from "../components/home/componentsHome/CopyRigth";
 import Button from "../components/Button";
 
 type ProfileViewType = {
@@ -50,7 +49,7 @@ function ProfileView() {
               </p>
               <button
                 onClick={() =>
-                  navigate(`/pelu/${item.name}-${item.lastName}/${item.id}`)
+                  navigate(`/${item.name}-${item.lastName}/${item.id}`)
                 }
                 className="bg-lightpurple w-1/2 text-white px-4 py-2 rounded-lg shadow-md hover:bg-secondary transition duration-300"
               >

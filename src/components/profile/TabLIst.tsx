@@ -10,10 +10,10 @@ import { Clock, Calendar, Clock3 } from "lucide-react";
 type TabListProps = {
   selectedTab: string;
   data: UserClient;
+  id: string;
 };
 
-const TabList = ({ selectedTab, data }: TabListProps) => {
-  console.log("🚀 ~ TabList ~ data:", data);
+const TabList = ({ selectedTab, data, id }: TabListProps) => {
   const navigate = useNavigate();
   const quryClient = useQueryClient();
   return (
