@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import FormModal from "../components/category/FormModal";
 import ListCategori from "../components/category/ListCategori";
 import Button from "../components/Button";
+import { Plus } from "lucide-react";
 
 function Categories() {
   const { data, isLoading } = useQuery({
@@ -29,18 +30,30 @@ function Categories() {
   if (data)
     return (
       <>
-        <div className="flex justify-center items-center bg-lightpurple">
-          <div className="w-full max-w-4xl">
-            <h1 className="text-4xl font-black flex justify-center">CATEGORIAS</h1>
-            <div className=" flex justify-around p-8">
-              <Button route="/dashboard" className=" bg-primary w-1/5 flex justify-center">
+        <div className=" w-[90%] m-auto">
+          <div className="w-full">
+            <h1 className="text-4xl my-5 text-gray-100 flex justify-center">
+              CATEGORIAS
+            </h1>
+            <div className="flex w-full m-auto justify-between">
+              <Button
+                route="/dashboard"
+                className=" bg-primary w-1/5 flex justify-center"
+              >
                 Volver
               </Button>
-              <Button route="?newCategory=true" colorType="primary" className="w-2/4 justify-center flex">Crear Categoria</Button>
+              <Button
+                route="?newService=true"
+                colorType="primary"
+                className="flex items-center"
+              >
+                <Plus className="mr-2 h-4 w-4" />
+                Crear Categoria
+              </Button>
             </div>
             {/* Listado de categorias */}
 
-            <div className="max-wmax-w-screen-2xl m-auto px-16 pt-2 pb-40">
+            <div className="">
               <ListCategori data={data} mutate={mutate} />
             </div>
 

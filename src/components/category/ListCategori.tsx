@@ -26,13 +26,13 @@ function ListCategori({ data, mutate }: ListCategoryProps) {
           {data.map((category) => (
             <li
               key={category._id}
-              className="flex justify-between gap-x-6 px-5 py-10"
+              className="flex justify-between gap-x-6 px-5 py-10 bg-purple-50"
             >
               <div className="flex min-w-0 gap-x-4">
                 <div className="min-w-0 flex-auto space-y-2">
                   <Link
                     to={`/category/${category._id}`}
-                    className="text-primary cursor-pointer hover:underline text-3xl font-bold"
+                    className="text-primary cursor-pointer hover:underline text-3xl"
                   >
                     {category.name}
                   </Link>

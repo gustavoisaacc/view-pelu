@@ -37,11 +37,11 @@ function ListAppointement({ data }: ListAppointementType) {
     <>
       <ul
         role="list"
-        className="divide-y divide-gray-100 border border-gray-100 bg-white shadow-lg"
+        className="divide-y divide-primary border border-primary bg-white shadow-lg rounded-lg"
       >
         {data.map((items, i) => (
           <>
-            <p>Turno {i + 1}</p>
+            <p className="text-base font-bold bg-primary text-white pl-2">Turno {i + 1}</p>
             <li
               key={items._id}
               className="flex justify-between gap-x-6 px-5 py-10"
@@ -50,19 +50,19 @@ function ListAppointement({ data }: ListAppointementType) {
                 <div className="min-w-0 flex-auto space-y-2">
                   <Link
                     to={``}
-                    className="text-gray-600 cursor-pointer hover:underline text-lg font-bold"
+                    className="text-primary cursor-pointer hover:underline text-lg font-bold"
                   >
                     {formatDate(items.date)}
                   </Link>
-                  <p className="text-sm text-gray-400">HR: {items.startTime}</p>
-                  <p className="text-sm text-gray-400">
+                  <p className="text-sm text-black">HR: {items.startTime}</p>
+                  <p className="text-sm text-black">
                     Tolerancia: {items.delay}
                   </p>
                 </div>
               </div>
               <div className="flex shrink-0 items-center gap-x-6">
                 <Menu as="div" className="relative flex-none">
-                  <MenuButton className="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-900">
+                  <MenuButton className="-m-2.5 block p-2.5 text-primary hover:text-secondary">
                     <span className="sr-only">opciones</span>
                     <EllipsisVerticalIcon
                       className="h-9 w-9"

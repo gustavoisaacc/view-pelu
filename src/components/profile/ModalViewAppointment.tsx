@@ -13,7 +13,7 @@ import {
   getAppointmentById,
   getCategoryByIdAppoitment,
 } from "../../api/Appointmentpi";
-import CardContainer from "../CardContainer";
+
 import { formatDate } from "../../hooks/date";
 import { createReservation } from "../../api/DetaillApi";
 import { toast } from "react-toastify";
@@ -23,7 +23,6 @@ interface FormData {
   customerEmail: string;
   customerPhone: string;
 }
-
 export default function ModalViewAppointment() {
   const navigate = useNavigate();
   const location = useLocation();

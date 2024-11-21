@@ -50,7 +50,7 @@ function EditPhotoProfile() {
       <input
         type="submit"
         value="Enviar"
-        className="w-[90%] max-w-sm px-4 py-2 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-secondary focus:outline-none"
+        className="w-full max-w-sm px-4 py-2 border border-secondary text-white text-purp`ple  font-semibold rounded-lg shadow-md hover:bg-secondary focus:outline-none"
       />
       {error && (
         <p className="text-red-500 text-sm sm:text-base text-center">
@@ -62,4 +62,3 @@ function EditPhotoProfile() {
 }
 
 export default EditPhotoProfile;
-

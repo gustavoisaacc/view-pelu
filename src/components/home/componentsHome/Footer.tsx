@@ -14,7 +14,6 @@ const Footer = () => {
                     <p className="footer-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil consequuntur nemo quibusdam enim eaque animi quia pariatur. Est, explicabo perspiciatis, aperiam facilis libero, in doloremque suscipit esse totam neque architecto..</p>
                 </div>
             </div>
-            <CopyRigth/>
         </footer>
     );
 };

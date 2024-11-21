@@ -5,15 +5,15 @@ import { Button } from "../ButtonP";
 import CardContainer from "../CardContainer";
 import ModalViewAppointment from "./ModalViewAppointment";
 import { useQueryClient } from "@tanstack/react-query";
-import { Clock, Calendar, User, Scissors, Phone, Clock3 } from "lucide-react";
+import { Clock, Calendar, Clock3 } from "lucide-react";
 
 type TabListProps = {
   selectedTab: string;
   data: UserClient;
+  id: string;
 };
 
-const TabList = ({ selectedTab, data }: TabListProps) => {
-  console.log("🚀 ~ TabList ~ data:", data);
+const TabList = ({ selectedTab, data, id }: TabListProps) => {
   const navigate = useNavigate();
   const quryClient = useQueryClient();
   return (
@@ -21,9 +21,9 @@ const TabList = ({ selectedTab, data }: TabListProps) => {
       <div className="mt-4">
         {/* {selectedTab === "images" && (
           <div>
-            <h3 className="text-lg font-semibold mb-5">Galería de Trabajos</h3>
+            <h3 className="text-lg font-semibold mb-5 text-white">Galería de Trabajos</h3>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-              <p className="py-10 text-center text-gray-400">En proceso...</p>
+              <p className="py-10 text-center text-black">En proceso...</p>
             </div>
           </div>
         )} */}
@@ -67,7 +67,7 @@ const TabList = ({ selectedTab, data }: TabListProps) => {
                           });
                         }}
                         variant="outline"
-                        className="text-lightpurple border-lightpurple"
+                        className="text-primary border-primary"
                       >
                         Reservar
                       </Button>

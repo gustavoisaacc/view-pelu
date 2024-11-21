@@ -15,8 +15,7 @@
   
   .navbar-header {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
   }
   
   .img-nav{
@@ -25,14 +24,11 @@
   
   @media (min-width: 1024px) {
     .navbar {
-      flex-direction: row; 
-      justify-content: space-between; 
-      align-items: center; 
       padding: 1rem 2rem; 
     }
   
     .navbar-header {
-      justify-content: flex-start; 
+      justify-content: space-between; 
     }
   
     .img-nav {

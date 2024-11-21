@@ -30,10 +30,16 @@ function CardProfile({ data }: CardProfileType) {
             {data?.phone}
           </p>
         </div>
-        <div className="flex flex-wrap justify-center gap-2 mt-4">
-          <Badge variant="default">Cortes de Mujeres</Badge>
-          <Badge variant="default">Cortes de Hombres</Badge>
-          <Badge variant="default">Colometria</Badge>
+        <div className="flex flex-wrap justify-center gap-12 mt-4 text-white">
+          <Badge variant="default" className="w-36 h-12 flex justify-center">
+            Cortes de Mujeres
+          </Badge>
+          <Badge variant="default" className="w-36 h-12 flex justify-center">
+            Cortes de Hombres
+          </Badge>
+          <Badge variant="default" className="w-36 h-12 flex justify-center">
+            Colometria
+          </Badge>
         </div>
       </CardContainer>
     </div>

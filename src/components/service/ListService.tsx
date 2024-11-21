@@ -7,9 +7,11 @@ import {
   Transition,
 } from "@headlessui/react";
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
-import { Link, useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import { Service } from "../../schema/service.schema";
+
+import { Clock, DollarSign, Scissors } from "lucide-react";
 
 type ListServiceType = {
   dataService: Service[];
@@ -23,34 +25,18 @@ function ListService({ dataService, mutate }: ListServiceType) {
   return (
     <>
       {dataService && dataService.length ? (
-        <ul
-          role="list"
-          className="divide-y divide-secondary border border-secondary mt-10 bg-primary shadow-lg"
-        >
+        <ul className="grid gap-4">
           {dataService.map((service) => (
             <li
               key={service._id}
-              className="flex justify-between gap-x-6 px-5 py-10"
+              className="border-2 bg-[#e1bee7] hover:border-[#9c27b0] rounded p-4 transition-all duration-200"
             >
-              <div className="flex min-w-0 gap-x-4">
-                <div className="min-w-0 flex-auto space-y-2">
-                  <Link
-                    to={`/category/${service._id}`}
-                    className="text-white cursor-pointer hover:underline text-3xl font-bold"
-                  >
-                    {service.name}
-                  </Link>
-                  <p className="text-sm text-white">
-                    Descripcion: {service.description}
-                  </p>
-                  <p className="text-sm text-white">
-                    Duracion: {service.duration}
-                  </p>
-                  <p className="text-sm text-white">Precio: ${service.price}</p>
-                </div>
-              </div>
-              <div className="flex shrink-0 items-center gap-x-6">
-                <Menu as="div" className="relative flex-none">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-bold text-[#4a148c] flex items-center gap-2">
+                  <Scissors className="h-5 w-5 text-[#9c27b0]" />
+                  {service.name.toUpperCase()}
+                </h2>
+                <Menu as="div" className="relative">
                   <MenuButton className="-m-2.5 block p-2.5 text-white hover:text-secondary">
                     <span className="sr-only">opciones</span>
                     <EllipsisVerticalIcon
@@ -67,19 +53,14 @@ function ListService({ dataService, mutate }: ListServiceType) {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <MenuItems className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-primary py-2 shadow-lg ring-1 ring-white focus:outline-none">
-                      <MenuItem>
-                        <Link
-                          to={`/category/${service._id}`}
-                          className="block px-3 py-1 text-sm leading-6 text-white border-b border-white"
-                        >
-                          Ver Servicios
-                        </Link>
-                      </MenuItem>
+                    <MenuItems
+                      static
+                      className="absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    >
                       <MenuItem>
                         <Link
                           to={`?serviceId=${service._id}`}
-                          className="block px-3 py-1 text-sm leading-6 text-white border-b border-white"
+                          className=" block px-4 py-2 text-sm text-gray-700 w-full text-left"
                         >
                           Editar Categoria
                         </Link>
@@ -87,27 +68,41 @@ function ListService({ dataService, mutate }: ListServiceType) {
                       <MenuItem>
                         <button
                           type="button"
-                          className="block px-3 py-1 text-sm leading-6 text-red-500 border-b border-white"
+                          className="block px-4 py-2 text-sm text-red-600 w-full text-left"
                           onClick={() =>
                             mutate({ serviceId: service._id, categoryId })
                           }
                         >
-                          Eliminar Categoria
+                          Eliminar
                         </button>
                       </MenuItem>
                     </MenuItems>
                   </Transition>
                 </Menu>
               </div>
+              <p className="text-sm text-gray-600 mb-4">
+                {service.description.toUpperCase()}
+              </p>
+              <div className="flex justify-between items-center text-sm">
+                <div className="flex items-center gap-2 text-[#9c27b0]">
+                  <Clock className="h-4 w-4" />
+                  <span>Duración: {service.duration}</span>
+                </div>
+                <div className="flex items-center gap-2 font-semibold text-[#9c27b0]">
+                  <DollarSign className="h-4 w-4" />
+                  <span>{service.price.toLocaleString()}</span>
+                </div>
+              </div>
             </li>
           ))}
         </ul>
       ) : (
         <h1 className="text-gray-200 font-semibold text-4xl text-center mt-10">
-          Aun no hay Servicios
+          Aún no hay Servicios
         </h1>
       )}
     </>
   );
 }
+
 export default ListService;
