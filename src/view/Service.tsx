@@ -6,6 +6,7 @@ import ListService from "../components/service/ListService";
 import FormServiceModal from "../components/service/FormServerModal";
 import { deleteService, getService } from "../api/ServiceApi";
 import { toast } from "react-toastify";
+import { Plus } from "lucide-react";
 
 function Service() {
   const params = useParams();
@@ -39,11 +40,11 @@ function Service() {
   if (dataCategory)
     return (
       <>
-        <div className="bg-lightpurple">
-          <h1 className=" text-6xl text-white capitalize font-semibold flex justify-center">
+        <div className="bg-lightpurple w-[90%] m-auto mt-5">
+          <h1 className=" text-4xl text-white capitalize flex justify-center">
             {dataCategory.name}
           </h1>
-          <div className="flex justify-around pt-16">
+          <div className="flex justify-between mt-10">
             <Button
               route="/category"
               className="bg-primary w-1/5 flex justify-center"
@@ -53,14 +54,15 @@ function Service() {
             <Button
               route="?newService=true"
               colorType="primary"
-              className="w-2/4 justify-center flex"
+              className="flex items-center"
             >
+              <Plus className="mr-2 h-4 w-4" />
               Crear Servicio
             </Button>
           </div>
           {/* Listado de categorias */}
 
-          <div className="max-wmax-w-screen-2xl m-auto px-16">
+          <div className="mt-5">
             <ListService dataService={dataService} mutate={mutate} />
           </div>
 

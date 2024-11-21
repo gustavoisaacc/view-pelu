@@ -35,14 +35,6 @@ export default function LoginView() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-lightpurple px-4">
       <div className="w-full max-w-md space-y-6">
-        <div className="flex justify-center">
-          <Button
-            route="/"
-            className="bg-primary hover:bg-secondary md:w-48 text-center px-10"
-          >
-            Volver
-          </Button>
-        </div>
         <form
           onSubmit={handleSubmit(handleLogin)}
           className="bg-white shadow-lg rounded-lg w-full"

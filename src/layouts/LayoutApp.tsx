@@ -23,7 +23,7 @@ function LayoutApp() {
         <header className="bg-darkpurple  bg-lightpurple">
           <section className="max-w-screen-2xl m-auto flex flex-col lg:flex-row items-center justify-between">
             <div className="w-64">
-              <Link to="/">
+              <Link to="/dashboard">
                 <Logo />
               </Link>
             </div>
@@ -38,10 +38,10 @@ function LayoutApp() {
           <Outlet />
         </main>
 
-        <footer className="text-center py-5 bg-lightpurple footer-copyright">
-        </footer>
+        <footer className="text-center py-5 bg-lightpurple footer-copyright"></footer>
         <div className="footer-copyright footer ">
-            &copy; {new Date().getFullYear()} Tu Empresa. Todos los derechos reservados.
+          &copy; {new Date().getFullYear()} Tu Empresa. Todos los derechos
+          reservados.
         </div>
 
         <ToastContainer pauseOnFocusLoss={false} pauseOnHover={false} />

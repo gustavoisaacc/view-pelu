@@ -5,7 +5,7 @@ import { Button } from "../ButtonP";
 import CardContainer from "../CardContainer";
 import ModalViewAppointment from "./ModalViewAppointment";
 import { useQueryClient } from "@tanstack/react-query";
-import { Clock, Calendar, User, Scissors, Phone, Clock3 } from "lucide-react";
+import { Clock, Calendar, Clock3 } from "lucide-react";
 
 type TabListProps = {
   selectedTab: string;
@@ -36,14 +36,6 @@ const TabList = ({ selectedTab, data }: TabListProps) => {
             <div className="space-y-4 w-full">
               {data && data.appointments && data.appointments.length > 0 ? (
                 <>
-<<<<<<< HEAD
-                  {data.appointments.map((item) => (
-                    <CardContainer className="p-2 bg-purple-300 flex justify-between items-center">
-                      <div>
-                        <h3>{formatDate(item.date)}</h3>
-                        <p>{item.startTime}</p>
-                        <p>{item.delay} min</p>
-=======
                   {data.appointments.map((appointment) => (
                     <CardContainer className="p-5 bg-white flex justify-between items-center">
                       <div className="flex flex-col gap-2 text-sm text-gray-600">
@@ -66,7 +58,6 @@ const TabList = ({ selectedTab, data }: TabListProps) => {
                             {appointment.delay} min
                           </span>
                         </div>
->>>>>>> 03f9a24802dda0a14915f0b0cf1317c07d9b364e
                       </div>
                       <Button
                         onClick={() => {

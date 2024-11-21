@@ -16,7 +16,7 @@ function AvatarProfile({ data }: AvatarProfileType) {
   });
 
   return (
-    <div className="flex flex-col items-center bg-white py-6 shadow-md rounded-lg w-full max-w-md mx-auto space-y-6">
+    <div className="flex flex-col items-center py-6  max-w-md mx-auto space-y-6">
       <div className="h-32 w-32 relative overflow-hidden rounded-full shadow-lg">
         <img
           src={dataAvatar || "https://via.placeholder.com/150"}
@@ -35,5 +35,3 @@ function AvatarProfile({ data }: AvatarProfileType) {
 }
 
 export default AvatarProfile;
-
-

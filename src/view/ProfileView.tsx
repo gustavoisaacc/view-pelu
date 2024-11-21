@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getUserClient } from "../api/ProfileAuth";
 import { Navigate, useNavigate } from "react-router-dom";
 import CopyRigth from "../components/home/componentsHome/CopyRigth";
-import  Button  from "../components/Button";
+import Button from "../components/Button";
 
 type ProfileViewType = {
   id: string;
@@ -25,18 +25,19 @@ function ProfileView() {
 
   if (data)
     return (
-      <>
-      <Button
-      route="/"
-      className="flex justify-center mb-8 text-white bg-primary w-52 ml-20 md:w-1/5 md:h-10 p-2 rounded-md hover:bg-secondary transition duration-300"
-    >
-      Volver
-    </Button>
-        <div className="grid gap-6 px-4 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 mb-12">
+      <div className="w-[90%] m-auto">
+        <Button
+          route="/"
+          className="flex justify-center mb-8 text-white bg-primary w-52 md:w-1/5 md:h-10 p-2 rounded-md hover:bg-secondary transition duration-300"
+        >
+          Volver
+        </Button>
+        <div className="grid gap-6  sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 mb-12">
           {data.map((item) => (
             <div
               key={item.id}
-              className="flex flex-col items-center bg-primary p-6 shadow-md rounded-lg space-y-4 w-full">
+              className="flex flex-col items-center bg-primary p-6 shadow-md rounded-lg space-y-4 w-full"
+            >
               <div className="relative h-auto w-40 overflow-hidden rounded-full shadow-lg">
                 <img
                   src={item.avatarUrl || "https://via.placeholder.com/150"}
@@ -58,10 +59,8 @@ function ProfileView() {
             </div>
           ))}
         </div>
-        <CopyRigth />
-      </>
+      </div>
     );
 }
 
 export default ProfileView;
-

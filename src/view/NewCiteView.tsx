@@ -11,6 +11,7 @@ import {
 import { toast } from "react-toastify";
 import ListAppointement from "../components/citas/ListAppointement";
 import { useLocation, useNavigate } from "react-router-dom";
+import "../components/home/style/notFound.css";
 
 function NewCiteView() {
   const location = useLocation();
@@ -36,10 +37,7 @@ function NewCiteView() {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
-    mutationFn: (args: {
-      formData: AppointmentFormData;
-      paramsId: string;
-    }) => {
+    mutationFn: (args: { formData: AppointmentFormData; paramsId: string }) => {
       const { formData, paramsId } = args;
       return paramsId
         ? updateAppointment({ id: paramsId, formData })
@@ -102,7 +100,7 @@ function NewCiteView() {
             </div>
           </form>
           {/* Lista de citas */}
-          <div className="lg:w-1/2 w-full lg:max-h-[500px] lg:overflow-y-auto lg:scroll-m-1">
+          <div className="lg:w-1/2 w-full lg:max-h-[500px] lg:overflow-y-auto custom-scrollbar">
             {data && data.length > 0 ? (
               <ListAppointement data={data} />
             ) : (
