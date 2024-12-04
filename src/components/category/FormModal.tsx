@@ -29,6 +29,7 @@ export default function FormModal() {
 
   const queryParam = new URLSearchParams(location.search);
   const query = queryParam.get("newCategory");
+  console.log("🚀 ~ FormModal ~ query:", query)
   const categoryId = queryParam.get("categoryId");
   const show = query || categoryId ? true : false;
 

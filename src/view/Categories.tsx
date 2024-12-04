@@ -44,7 +44,7 @@ function Categories() {
                 Volver
               </Button>
               <Button
-                route="?newService=true"
+                route="?newCategory=true"
                 colorType="primary"
                 className="flex items-center"
               >
