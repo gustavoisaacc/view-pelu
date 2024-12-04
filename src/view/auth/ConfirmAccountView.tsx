@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { PinInput, PinInputField } from "@chakra-ui/pin-input";
 import { ConfirmToken } from "../../schema/auth";
 import { ConfirmAccount } from "../../api/AuthApi";
-import { error } from "console";
 import { toast } from "react-toastify";
 
 export default function ConfirmAccountView() {
