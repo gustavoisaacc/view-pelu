@@ -10,7 +10,6 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-header">
-        <img src={img1} alt="" className="img-nav"/>
         <Link to="/dashboard">
         <img src={img2} alt="" className="img-nav"/>
         </Link>

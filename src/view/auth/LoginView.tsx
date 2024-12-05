@@ -32,7 +32,7 @@ export default function LoginView() {
   const handleLogin = (formData: UserLoginForm) => mutate(formData);
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-lightpurple px-4">
+    <div className="flex justify-center items-center min-h-full bg-lightpurple px-4">
       <div className="w-full max-w-md space-y-6">
         <form
           onSubmit={handleSubmit(handleLogin)}

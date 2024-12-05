@@ -4,7 +4,6 @@ import { getUserClientByid } from "../api/ProfileAuth";
 
 import CardProfile from "../components/profile/CardProfile";
 import TabList from "../components/profile/TabLIst";
-import TabTrigger from "../components/profile/TabTrigger";
 import { useState } from "react";
 import Button from "../components/Button";
 import HairSalonSpinner from "../components/Spinner";
