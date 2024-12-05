@@ -5,12 +5,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { createAccount } from "../../api/AuthApi";
 import { toast } from "react-toastify";
-
+import getState from "../../lib/apiCountry";
+import { useEffect, useState } from "react";
+import { Province } from "../../schema/state.schema";
+type StateResponse = {
+  provincias: Province[];
+};
 export default function RegisterView() {
+  const [state, setState] = useState<StateResponse | null>(null);
   const initialValues: UserRegistrationForm = {
     name: "",
     lastName: "",
     phone: "",
+    state: "",
+    locality: "",
     direction: "",
     email: "",
     password: "",
@@ -19,6 +27,15 @@ export default function RegisterView() {
   };
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getState().then((res) => {
+      const sortedProvinces = res.provincias.sort((a, b) =>
+        a.nombre.localeCompare(b.nombre)
+      );
+      setState({ provincias: sortedProvinces });
+    });
+  }, []);
 
   const {
     register,
@@ -44,7 +61,7 @@ export default function RegisterView() {
   });
 
   const handleRegister = (formData: UserRegistrationForm) => {
-    mutate(formData);
+    console.log("🚀 ~ handleRegister ~ formData:", formData);
   };
 
   return (
@@ -129,6 +146,23 @@ export default function RegisterView() {
                 />
                 {errors.phone && (
                   <ErrorMessage>{errors.phone.message}</ErrorMessage>
+                )}
+              </div>
+              <div className="flex flex-col gap-5">
+                <label className="font-normal text-lg">Provincia</label>
+                <select
+                  {...register("state")}
+                  className="w-full p-3  border-primary border outline-none"
+                >
+                  <option value="">Seleccione una provincia</option>
+                  {state?.provincias?.map((item) => (
+                    <option key={item.id} value={item.id}>
+                      {item.nombre}
+                    </option>
+                  ))}
+                </select>
+                {errors.state && (
+                  <ErrorMessage>{errors.state.message}</ErrorMessage>
                 )}
               </div>
               <div className="flex flex-col gap-5">

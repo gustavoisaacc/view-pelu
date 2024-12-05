@@ -4,6 +4,8 @@ export const authSchema = z.object({
   name: z.string(),
   lastName: z.string(),
   phone: z.string(),
+  state: z.string(),
+  locality: z.string(),
   direction: z.string(),
   email: z.string().email(),
   confirm: z.boolean(),
@@ -22,6 +24,8 @@ export type UserRegistrationForm = Pick<
   | "lastName"
   | "phone"
   | "direction"
+  | "state"
+  | "locality"
   | "email"
   | "password"
   | "confirmation_password"
