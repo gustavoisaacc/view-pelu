@@ -1,0 +1,13 @@
+select {
+  appearance: none;
+  overflow: hidden;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  max-height: 200px;
+}
+select option {
+  word-wrap: break-word; /* Fuerza saltos de línea */
+  overflow: hidden; /* Evita que el texto desborde */
+}

@@ -5,20 +5,34 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { createAccount } from "../../api/AuthApi";
 import { toast } from "react-toastify";
-import getState from "../../lib/apiCountry";
+import { getLocalities, getState } from "../../lib/apiCountry";
 import { useEffect, useState } from "react";
 import { Province } from "../../schema/state.schema";
+import "../../components/home/style/select.css";
 type StateResponse = {
   provincias: Province[];
 };
+type Municipio = {
+  id: string;
+  nombre: string;
+};
 export default function RegisterView() {
   const [state, setState] = useState<StateResponse | null>(null);
+  const [provinceId, setProvinceId] = useState("");
+  const [localities, setLocalities] = useState<Municipio[]>([]);
+  const isBrave = (() => {
+    return (
+      (navigator as any).brave &&
+      typeof (navigator as any).brave.isBrave === "function"
+    );
+  })();
+
   const initialValues: UserRegistrationForm = {
     name: "",
     lastName: "",
     phone: "",
     state: "",
-    locality: "",
+    localities: "",
     direction: "",
     email: "",
     password: "",
@@ -27,16 +41,34 @@ export default function RegisterView() {
   };
 
   const navigate = useNavigate();
-
+  //provincias
   useEffect(() => {
-    getState().then((res) => {
-      const sortedProvinces = res.provincias.sort((a, b) =>
+    const fetchData = async () => {
+      const data = await getState();
+      const sortRes = data.provincias.sort((a: Province, b: Province) =>
         a.nombre.localeCompare(b.nombre)
       );
-      setState({ provincias: sortedProvinces });
-    });
-  }, []);
+      setState({ provincias: sortRes });
+    };
 
+    fetchData();
+  }, [provinceId]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getLocalities(provinceId);
+      const sortRes = data.municipios.sort((a: Municipio, b: Municipio) =>
+        a.nombre.localeCompare(b.nombre)
+      );
+      setLocalities(sortRes);
+    };
+
+    fetchData();
+  }, [provinceId]);
+  //localidades
+  const handelChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const id = e.target.value;
+    setProvinceId(id);
+  };
   const {
     register,
     handleSubmit,
@@ -61,7 +93,7 @@ export default function RegisterView() {
   });
 
   const handleRegister = (formData: UserRegistrationForm) => {
-    console.log("🚀 ~ handleRegister ~ formData:", formData);
+    mutate(formData);
   };
 
   return (
@@ -148,21 +180,42 @@ export default function RegisterView() {
                   <ErrorMessage>{errors.phone.message}</ErrorMessage>
                 )}
               </div>
-              <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-5 relative overflow-visible">
                 <label className="font-normal text-lg">Provincia</label>
                 <select
                   {...register("state")}
-                  className="w-full p-3  border-primary border outline-none"
+                  className={`w-full p-3 border border-primary rounded-md bg-white text-gray-800 shadow-sm focus:ring-2 focus:ring-primary focus:outline-none transition-all overflow-hidden text-ellipsis  ${
+                    isBrave ? "custom-brave-fix" : ""
+                  }`}
+                  onChange={(e) => handelChange(e)}
                 >
                   <option value="">Seleccione una provincia</option>
                   {state?.provincias?.map((item) => (
-                    <option key={item.id} value={item.id}>
+                    <option key={item.id} value={item.nombre}>
                       {item.nombre}
                     </option>
                   ))}
                 </select>
                 {errors.state && (
                   <ErrorMessage>{errors.state.message}</ErrorMessage>
+                )}
+              </div>
+
+              <div className="flex flex-col gap-5">
+                <label className="font-normal text-lg">Localidad</label>
+                <select
+                  {...register("localities")}
+                  className="w-full p-3  border-primary border outline-none"
+                >
+                  <option value="">Seleccione una localidad</option>
+                  {localities?.map((item) => (
+                    <option key={item.id} value={item.nombre}>
+                      {item.nombre}
+                    </option>
+                  ))}
+                </select>
+                {errors.localities && (
+                  <ErrorMessage>{errors.localities.message}</ErrorMessage>
                 )}
               </div>
               <div className="flex flex-col gap-5">

@@ -3,9 +3,11 @@ import { getUserAvatar } from "../api/ProfileAuth";
 import Button from "../components/Button";
 import { useAuth } from "../hooks/useAuth";
 import HairSalonSpinner from "../components/Spinner";
+import ImageProfile from "../components/profile/ImageProfile";
 
 function Dashboard() {
-  const { data, isError, isLoading } = useAuth();
+  const { data, isLoading } = useAuth();
+
   const { data: avatarURL } = useQuery({
     queryKey: ["avatar", data?._id],
     queryFn: getUserAvatar,
@@ -35,11 +37,7 @@ function Dashboard() {
         </section>
         <section className="flex items-center mt-10 space-x-8 bg-primary p-6 shadow-md rounded-lg w-full mx-auto">
           <div className="rrelative h-40 w-40 overflow-hidden rounded-full shadow-lg">
-            <img
-              src={avatarURL || "https://via.placeholder.com/150"}
-              alt="Foto de perfil"
-              className="h-full w-full object-cover object-top"
-            />
+            <ImageProfile avatarUrl={avatarURL} />
           </div>
 
           <div className="flex flex-col">

@@ -3,6 +3,7 @@ import { getUserClient } from "../api/ProfileAuth";
 import { Navigate, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import HairSalonSpinner from "../components/Spinner";
+import ImageProfile from "../components/profile/ImageProfile";
 
 type ProfileViewType = {
   id: string;
@@ -45,12 +46,8 @@ function ProfileView() {
                 key={item.id}
                 className="flex flex-col items-center bg-primary p-6 shadow-md rounded-lg space-y-4 w-full"
               >
-                <div className="relative h-auto w-40 overflow-hidden rounded-full shadow-lg">
-                  <img
-                    src={item.avatarUrl || "https://via.placeholder.com/150"}
-                    alt="Foto de perfil"
-                    className="h-full w-full object-cover object-top"
-                  />
+                <div className="relative h-40 w-40 overflow-hidden rounded-full shadow-lg">
+                  <ImageProfile avatarUrl={item.avatarUrl} />
                 </div>
                 <p className="text-lg font-semibold text-center sm:text-left">
                   {item?.name} {item?.lastName}

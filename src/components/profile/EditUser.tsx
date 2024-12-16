@@ -13,7 +13,7 @@ function EditUser({ register, errors }: EditUserType) {
       <div className="flex flex-col gap-5">
         <label className="font-normal text-lg">Nombre</label>
         <input
-          type="name"
+          type="text"
           className="w-full p-3  border-gray-300 border"
           {...register("name", {
             required: "El Nombre de usuario es obligatorio",
@@ -24,7 +24,7 @@ function EditUser({ register, errors }: EditUserType) {
       <div className="flex flex-col gap-5">
         <label className="font-normal text-lg">Apellido</label>
         <input
-          type="lastName"
+          type="text"
           className="w-full p-3  border-gray-300 border"
           {...register("lastName", {
             required: "El Apellido de usuario es obligatorio",
@@ -45,12 +45,26 @@ function EditUser({ register, errors }: EditUserType) {
         />
         {errors.phone && <ErrorMessage>{errors.phone.message}</ErrorMessage>}
       </div>
+
       <div className="flex flex-col gap-5">
-        <label className="font-normal text-lg">ireccion</label>
+        <label className="font-normal text-lg">Profecion</label>
         <input
-          type="direction"
+          type="text"
           className="w-full p-3  border-gray-300 border"
-          {...register("direction", {
+          {...register("service", {
+            required: "La Profecion de usuario es obligatorio",
+          })}
+        />
+        {errors.service && (
+          <ErrorMessage>{errors.service.message}</ErrorMessage>
+        )}
+      </div>
+      <div className="flex flex-col gap-5">
+        <label className="font-normal text-lg">Provincia</label>
+        <input
+          type="text"
+          className="w-full p-3  border-gray-300 border"
+          {...register("state", {
             required: "La Direccion de usuario es obligatorio",
           })}
         />
@@ -59,16 +73,29 @@ function EditUser({ register, errors }: EditUserType) {
         )}
       </div>
       <div className="flex flex-col gap-5">
-        <label className="font-normal text-lg">Profecion</label>
+        <label className="font-normal text-lg">Localidad</label>
         <input
-          type="service"
+          type="text"
           className="w-full p-3  border-gray-300 border"
-          {...register("service", {
-            required: "La Profecion de usuario es obligatorio",
+          {...register("localities", {
+            required: "La Direccion de usuario es obligatorio",
           })}
         />
-        {errors.service && (
-          <ErrorMessage>{errors.service.message}</ErrorMessage>
+        {errors.direction && (
+          <ErrorMessage>{errors.direction.message}</ErrorMessage>
+        )}
+      </div>
+      <div className="flex flex-col gap-5">
+        <label className="font-normal text-lg">Direccion</label>
+        <input
+          type="text"
+          className="w-full p-3  border-gray-300 border"
+          {...register("direction", {
+            required: "La Direccion de usuario es obligatorio",
+          })}
+        />
+        {errors.direction && (
+          <ErrorMessage>{errors.direction.message}</ErrorMessage>
         )}
       </div>
     </div>

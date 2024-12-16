@@ -1,12 +1,15 @@
+import { User } from "lucide-react";
 import { z } from "zod";
+import { appointmenSchema } from "./appointment";
 
 export const authSchema = z.object({
   name: z.string(),
   lastName: z.string(),
   phone: z.string(),
   state: z.string(),
-  locality: z.string(),
+  localities: z.string(),
   direction: z.string(),
+  country: z.string(),
   email: z.string().email(),
   confirm: z.boolean(),
   password: z.string(),
@@ -25,7 +28,7 @@ export type UserRegistrationForm = Pick<
   | "phone"
   | "direction"
   | "state"
-  | "locality"
+  | "localities"
   | "email"
   | "password"
   | "confirmation_password"
@@ -46,12 +49,21 @@ export const userSchema = z.object({
   direction: z.string(),
   email: z.string().email(),
   service: z.string(),
+  state: z.string(),
+  localities: z.string(),
+  country: z.string(),
 });
 
 export type User = z.infer<typeof userSchema>;
 export type UserFormData = Pick<
   User,
-  "name" | "lastName" | "direction" | "phone" | "service"
+  | "name"
+  | "lastName"
+  | "direction"
+  | "phone"
+  | "service"
+  | "state"
+  | "localities"
 >;
 
 export const avatarSchema = z.object({
@@ -64,12 +76,8 @@ export type Avatar = z.infer<typeof avatarSchema>;
 export type avatarFrom = Pick<Avatar, "url" | "user">;
 
 const userclientSchema = z.object({
-  name: z.string(),
-  lastName: z.string(),
-  phone: z.string(),
-  direction: z.string(),
+  user: userSchema,
   avatarUrl: z.string(),
-  service: z.string(),
-  appointments: z.array(z.string()),
+  appointments: z.array(appointmenSchema),
 });
 export type UserClient = z.infer<typeof userclientSchema>;

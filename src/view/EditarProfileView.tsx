@@ -9,22 +9,45 @@ import { useMutation } from "@tanstack/react-query";
 import { updateUser } from "../api/ProfileAuth";
 import { toast } from "react-toastify";
 import HairSalonSpinner from "../components/Spinner";
-
+import { getCoordinatesLocationIQ } from "../lib/Location";
+import Map from "../components/Map";
+export type Location = {
+  lat: string;
+  lon: string;
+};
+export type Address = {
+  street: string;
+  locality: string;
+  province: string;
+  house_number: string;
+};
 function EditarProfileView() {
-  const { data, isError, isLoading } = useAuth();
+  const { data, isLoading } = useAuth();
+  console.log("🚀 ~ EditarProfileView ~ data:", data);
+  const [location, setLocation] = useState<Location | null>(null);
+  const [newAddress, setNewAddress] = useState<Address>({
+    street: "",
+    locality: "",
+    province: "",
+    house_number: "",
+  });
+  console.log("🚀 ~ EditarProfileView ~ newAddress:", newAddress);
 
   const initalState: UserFormData = {
-    name: data.name,
-    lastName: data.lastName,
-    phone: data.phone,
-    direction: data.direction,
-    service: data.service,
+    name: data?.name || "",
+    lastName: data?.lastName || "",
+    phone: data?.phone || "",
+    state: data?.state || "",
+    localities: data?.localities || "",
+    direction: data?.direction || "",
+    service: data?.service || "",
   };
 
   const {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<UserFormData>({
     defaultValues: initalState,
@@ -41,7 +64,13 @@ function EditarProfileView() {
       toast.success(data);
     },
   });
-
+  useEffect(() => {
+    if (newAddress) {
+      setValue("state", newAddress.province); // Actualiza el campo de provincia
+      setValue("localities", newAddress.locality); // Actualiza el campo de localidad
+      setValue("direction", `${newAddress.street} ${newAddress.house_number}`); // Actualiza dirección con calle y número
+    }
+  }, [newAddress, setValue]);
   // Función para comparar los objetos
   const hasChanged = (original: UserFormData, updated: UserFormData) => {
     return Object.keys(original).some(
@@ -62,6 +91,21 @@ function EditarProfileView() {
       setIsButtonDisabled(true);
     }
   });
+  const address = `${data?.country} ${data?.state} ${data?.localities} ${data?.direction} `;
+
+  useEffect(() => {
+    if (!address.trim()) return;
+
+    const getLocation = async () => {
+      try {
+        const res = await getCoordinatesLocationIQ(address);
+        setLocation(res);
+      } catch (error) {
+        console.error("Error al obtener coordenadas:", error);
+      }
+    };
+    getLocation();
+  }, [address]);
 
   if (isLoading) return <HairSalonSpinner />;
   if (data)
@@ -85,13 +129,19 @@ function EditarProfileView() {
             </div>
             <form onSubmit={onSubmit}>
               <EditUser register={register} errors={errors} />
+              <div>
+                {location && (
+                  <Map location={location} setNewAddress={setNewAddress} />
+                )}{" "}
+              </div>
+
               <button
                 type="submit"
                 className={`block w-full mt-5 text-center font-bold py-2 px-4 rounded shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-opacity-75 transition duration-300 ease-in-out 
         ${
           isButtonDisabled
-            ? "bg-lightpurple cursor-not-allowed text-white"
-            : "bg-secondary hover:bg-darkpurple text-white"
+            ? "bg-gray-400 cursor-not-allowed text-white"
+            : "bg-lightpurple hover:bg-darkpurple text-white"
         }`}
                 disabled={isButtonDisabled}
               >
