@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getUserClientByid } from "../api/ProfileAuth";
@@ -7,17 +7,13 @@ import CardProfile from "../components/profile/CardProfile";
 import TabList from "../components/profile/TabLIst";
 import Button from "../components/Button";
 import HairSalonSpinner from "../components/Spinner";
-
-import { MapClient } from "../components/MapClient";
-import { getCoordinatesLocationIQ } from "../lib/Location";
+import { TabTrigger } from "../components/profile/TabTrigger";
 export type Location = {
   lat: string;
   lon: string;
 };
 function PeluqueroDetailView() {
   const [selectedTab, setSelectedTab] = useState("appointments");
-  const [location, setLocation] = useState<Location>();
-  console.log("🚀 ~ PeluqueroDetailView ~ location:", location);
 
   const { id } = useParams();
 
@@ -27,12 +23,7 @@ function PeluqueroDetailView() {
     enabled: !!id,
     refetchOnWindowFocus: false,
   });
-  const { data: dataLocation } = useQuery({
-    queryKey: ["address"],
-    queryFn: () => getCoordinatesLocationIQ(data || ""),
-    refetchOnWindowFocus: false,
-  });
-  console.log("🚀 ~ PeluqueroDetailView ~ dataLocation:", dataLocation);
+
   if (isLoading) return <HairSalonSpinner />;
   if (isError) return <p>Error al cargar el perfil.</p>;
 
@@ -49,9 +40,24 @@ function PeluqueroDetailView() {
             </Button>
             <div className="my-5">
               <CardProfile data={data} />
-              <TabList data={data} id={id} selectedTab={selectedTab} />
+              <div className="flex justify-between items-center mb-4 p-1 bg-blue-50 rounded-lg shadow">
+                <TabTrigger
+                  value="appointments"
+                  selectedTab={selectedTab}
+                  setSelectedTab={setSelectedTab}
+                >
+                  Citas
+                </TabTrigger>
+                <TabTrigger
+                  value="ubicacion"
+                  selectedTab={selectedTab}
+                  setSelectedTab={setSelectedTab}
+                >
+                  Ubicacion
+                </TabTrigger>
+              </div>
+              <TabList data={data} selectedTab={selectedTab} />
             </div>
-            <div className="bg-red-300 h-auto w-full py-5"></div>
           </div>
         </div>
       </>

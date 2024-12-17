@@ -1,5 +1,5 @@
 import React from "react";
-type TabTriggerValue = "images" | "appointments";
+type TabTriggerValue = "appointments" | "ubicacion";
 type TabTriggerProps = {
   selectedTab: string;
   setSelectedTab: React.Dispatch<React.SetStateAction<string>>;
@@ -7,27 +7,24 @@ type TabTriggerProps = {
   children: React.ReactNode;
 };
 
-function TabTrigger({
+export function TabTrigger({
   selectedTab,
   setSelectedTab,
   value,
   children,
 }: TabTriggerProps) {
+  const isSelected = selectedTab === value;
+
   return (
     <button
-      className={`p-2 text-center rounded-lg focus:outline-none ${
-        selectedTab === value ? "bg-primary text-white" : "bg-secondary"
+      onClick={() => setSelectedTab(value)}
+      className={`px-4 py-2 rounded-md transition duration-300 w-full ${
+        isSelected
+          ? "bg-[#9c27b0] text-white shadow-sm" // Clase activa
+          : "bg-gray-200 text-gray-700 hover:bg-gray-300" // Clase inactiva
       }`}
-
-      // className="p-2 text-center rounded-lg focus:outline-none bg-gray-200"
-      // className={`p-2 text-center rounded-lg focus:outline-none ${
-      //   selectedTab === value ? "bg-purple-600 text-white" : "bg-gray-200"
-      // }`}
-      // onClick={() => setSelectedTab(value)}
     >
       {children}
     </button>
   );
 }
-
-export default TabTrigger;

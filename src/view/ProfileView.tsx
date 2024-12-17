@@ -19,7 +19,6 @@ function ProfileView() {
     retry: 1,
     refetchOnWindowFocus: false,
   });
-  console.log("🚀 ~ ProfileView ~ data:", data);
 
   const navigate = useNavigate();
 

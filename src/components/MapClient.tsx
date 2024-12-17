@@ -10,6 +10,7 @@ import { Location } from "../view/EditarProfileView";
 
 type MapProps = {
   location: Location;
+  address: string;
 };
 
 export function CenterOnZoom({ location }: { location: Location }) {
@@ -21,11 +22,13 @@ export function CenterOnZoom({ location }: { location: Location }) {
   return null;
 }
 
-export function MapClient({ location }: MapProps) {
+export function MapClient({ location, address }: MapProps) {
+  console.log("🚀 ~ MapClient ~ location:", location);
   return (
     <MapContainer
       center={[Number(location.lat), Number(location.lon)]}
       zoom={13}
+      style={{ height: "500px", width: "100%" }}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -34,7 +37,7 @@ export function MapClient({ location }: MapProps) {
 
       {/* Marcador que es arrastrable */}
       <Marker position={[Number(location.lat), Number(location.lon)]}>
-        <Popup>Dirección: {}</Popup>
+        <Popup>Dirección: {address}</Popup>
       </Marker>
 
       <CenterOnZoom location={location} />

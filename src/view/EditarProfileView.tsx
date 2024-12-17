@@ -23,12 +23,11 @@ export type Address = {
 };
 function EditarProfileView() {
   const { data, isLoading } = useAuth();
-  console.log("🚀 ~ EditarProfileView ~ data:", data);
   const [location, setLocation] = useState<Location | null>(null);
   const [newAddress, setNewAddress] = useState<Address>({
-    street: "",
-    locality: "",
-    province: "",
+    street: data?.direction || "",
+    locality: data?.localities || "",
+    province: data?.state || "",
     house_number: "",
   });
   console.log("🚀 ~ EditarProfileView ~ newAddress:", newAddress);
@@ -98,7 +97,8 @@ function EditarProfileView() {
 
     const getLocation = async () => {
       try {
-        const res = await getCoordinatesLocationIQ(address);
+        const res = await getCoordinatesLocationIQ(data);
+        console.log("🚀 ~ getLocation ~ res:", res);
         setLocation(res);
       } catch (error) {
         console.error("Error al obtener coordenadas:", error);

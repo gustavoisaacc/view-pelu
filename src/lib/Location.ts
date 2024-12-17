@@ -1,5 +1,5 @@
 export const getCoordinatesLocationIQ = async (data: string) => {
-  const address = `${data.user.country} ${data.user.state} ${data.user.localities} ${data.user.direction} `;
+  const address = `${data.country} ${data.state} ${data.localities} ${data.direction} `;
   console.log("🚀 ~ getCoordinatesLocationIQ ~ address:", address);
 
   const apiKey = "pk.0c5b224e47b24f48c18919a9ab8f0674"; // Reemplaza con tu API Key

@@ -39,27 +39,40 @@ function Map({ location, setNewAddress }: MapProps) {
   useEffect(() => {
     const fetchAddress = async () => {
       if (latLng.lat && latLng.lng) {
+        // Reemplaza 'YOUR_OPENCAGE_API_KEY' con tu clave de API de OpenCage
         const response = await fetch(
-          `https://nominatim.openstreetmap.org/reverse?lat=${latLng.lat}&lon=${latLng.lng}&format=json`
+          `https://api.opencagedata.com/geocode/v1/json?key=420381b72818429e99bccc91cae0b567&q=${latLng.lat}+${latLng.lng}&pretty=1&no_annotations=1`
         );
         const data = await response.json();
         console.log("🚀 ~ fetchAddress ~ data:", data);
 
-        // Filtrar la respuesta para obtener solo la calle, localidad y provincia
-        const street = data.address?.road || "Calle no disponible";
-        const locality =
-          data.address?.city_district || "Localidad no disponible";
-        const province = data.address?.state || "Provincia no disponible";
-        const house_number = data.address?.house_number || "";
-        setNewAddress({
-          street: data.address?.road,
-          locality: data.address?.city_district,
-          province: data.address?.state,
-          house_number: data.address?.house_number || "",
-        });
-        const fullAddress = `${street} ${house_number}, ${locality}, ${province}`;
-        setAddress(fullAddress);
-        console.log("🚀 ~ Address data:", fullAddress);
+        if (data.results && data.results.length > 0) {
+          const result = data.results[0];
+          console.log("🚀 ~ fetchAddress ~ data:", result);
+
+          // Filtrar la respuesta para obtener solo la calle, localidad y provincia
+          const street = result.components.road || "Calle no disponible";
+          const locality =
+            result.components.city ||
+            result.components.town ||
+            "Localidad no disponible";
+          const province = result.components.state || "Provincia no disponible";
+          const house_number = result.components.house_number || "";
+
+          // Actualiza el estado con la dirección completa
+          setNewAddress({
+            street,
+            locality,
+            province,
+            house_number,
+          });
+
+          const fullAddress = `${street} ${house_number}, ${locality}, ${province}`;
+          setAddress(fullAddress);
+          console.log("🚀 ~ Address data:", fullAddress);
+        } else {
+          console.error("Error al obtener la dirección:", data.status);
+        }
       }
     };
 

@@ -6,27 +6,48 @@ import CardContainer from "../CardContainer";
 import ModalViewAppointment from "./ModalViewAppointment";
 import { useQueryClient } from "@tanstack/react-query";
 import { Clock, Calendar, Clock3 } from "lucide-react";
+import { MapClient } from "../MapClient";
+import { Location } from "../../view/PeluqueroDetailView";
+import { useEffect, useState } from "react";
+import { getCoordinatesLocationIQ } from "../../lib/Location";
+import { MapPin } from "lucide-react";
 
 type TabListProps = {
   selectedTab: string;
   data: UserClient;
-  id: string;
 };
 
-const TabList = ({ selectedTab, data, id }: TabListProps) => {
+const TabList = ({ selectedTab, data }: TabListProps) => {
+  console.log("🚀 ~ TabList ~ data:", data);
+  const [location, setLocation] = useState<Location>();
   const navigate = useNavigate();
   const quryClient = useQueryClient();
+  const address = `${data.user.country} ${data.user.state} ${data.user.localities} ${data.user.direction}`;
+  useEffect(() => {
+    const el = async () => {
+      const res = await getCoordinatesLocationIQ(data.user);
+      console.log("🚀 ~ el ~ res:", res);
+      setLocation(res);
+    };
+    el();
+  }, []);
   return (
     <div>
       <div className="mt-4">
-        {/* {selectedTab === "images" && (
+        {selectedTab === "ubicacion" && (
           <div>
-            <h3 className="text-lg font-semibold mb-5 text-white">Galería de Trabajos</h3>
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-              <p className="py-10 text-center text-black">En proceso...</p>
+            <h3 className="text-lg font-semibold mb-5 text-white">Ubicacion</h3>
+            {/* <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+            </div> */}
+            <div className="w-full">
+              <MapClient location={location} address={address} />
+              <p className="text-gray-200 flex mt-2">
+                <MapPin className="h-5 w-5 text-blue-600" />
+                {address}
+              </p>
             </div>
           </div>
-        )} */}
+        )}
 
         {selectedTab === "appointments" && (
           <div className="">
