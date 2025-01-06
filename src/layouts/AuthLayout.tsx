@@ -7,9 +7,13 @@ function AuthLayout() {
     <>
       <div className=" bg-lightpurple min-h-screen ">
         <div className=" mx-auto w-[100%] " /*md:w-[450px]*/>
-          <Link to="/">
-            <Logo />
-          </Link>
+          <div className="grid place-content-center">
+            <div className="w-64">
+              <Link to="/">
+                <Logo />
+              </Link>
+            </div>
+          </div>
           <div className="">
             <Outlet />
           </div>

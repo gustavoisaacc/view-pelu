@@ -22,10 +22,12 @@ function LayoutApp() {
       <div className="min-h-screen flex flex-col  bg-lightpurple">
         <header className="bg-darkpurple ">
           <section className="max-w-screen-2xl m-auto flex flex-col lg:flex-row items-center justify-between">
-            <div className="w-64">
-              <Link to="/dashboard">
-                <Logo />
-              </Link>
+            <div className="grid place-content-center">
+              <div className="w-64">
+                <Link to="/dashboard">
+                  <Logo />
+                </Link>
+              </div>
             </div>
             <nav className="lg:w-24">
               <NavMenu name={data.name} />

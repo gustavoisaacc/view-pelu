@@ -4,6 +4,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import HairSalonSpinner from "../components/Spinner";
 import ImageProfile from "../components/profile/ImageProfile";
+import Search from "../components/Search";
 
 type ProfileViewType = {
   id: string;
@@ -28,12 +29,15 @@ function ProfileView() {
   if (data)
     return (
       <div className="w-[90%] m-auto">
-        <Button
-          route="/"
-          className="flex justify-center mb-8 text-white bg-primary w-52 md:w-1/5 md:h-10 p-2 rounded-md hover:bg-secondary transition duration-300"
-        >
-          Volver
-        </Button>
+        <div className="w-full flex gap-5 mb-8">
+          <Button
+            route="/"
+            className="flex justify-center  text-white bg-primary w-52 md:w-1/5 p-2 rounded-md hover:bg-secondary transition duration-300"
+          >
+            Volver
+          </Button>
+          <Search></Search>
+        </div>
         <div className="grid gap-6  sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 mb-12">
           {data.length === 0 ? (
             <p className="text-center text-gray-300 text-2xl mt-20">
