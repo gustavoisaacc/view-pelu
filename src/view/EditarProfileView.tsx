@@ -30,7 +30,6 @@ function EditarProfileView() {
     province: data?.state || "",
     house_number: "",
   });
-  console.log("🚀 ~ EditarProfileView ~ newAddress:", newAddress);
 
   const initalState: UserFormData = {
     name: data?.name || "",

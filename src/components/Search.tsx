@@ -1,14 +1,33 @@
+import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
+import { filterUsers } from "../api/Search";
+import { toast } from "react-toastify";
 
-function Search() {
+function Search({ setFilter }) {
   const { register, handleSubmit } = useForm({
     defaultValues: {
       search: "",
     },
   });
 
+  const { mutate } = useMutation({
+    mutationFn: filterUsers,
+    onError: (error) => {
+      toast.error(`${error}`);
+    },
+    onSuccess: (data) => {
+      console.log("🚀 ~ Search ~ data:", data);
+      setFilter(data);
+    },
+  });
+
   const onSubmit = handleSubmit((formData) => {
-    console.log("🚀 ~ onSubmit ~ formData:", formData);
+    const searchValue = formData.search.trim();
+    if (!searchValue) {
+      toast.info("Por favor ingresa un término de búsqueda");
+      return;
+    }
+    mutate({ search: searchValue });
   });
 
   return (

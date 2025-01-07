@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import HairSalonSpinner from "../components/Spinner";
 import ImageProfile from "../components/profile/ImageProfile";
 import Search from "../components/Search";
+import { useEffect, useState } from "react";
 
 type ProfileViewType = {
   id: string;
@@ -20,15 +21,20 @@ function ProfileView() {
     retry: 1,
     refetchOnWindowFocus: false,
   });
+  const [filter, setFilter] = useState(data);
+  console.log("🚀 ~ ProfileView ~ filter:", filter);
 
+  useEffect(() => {
+    if (data) setFilter(data);
+  }, [data]);
   const navigate = useNavigate();
 
   if (isLoading) return <HairSalonSpinner />;
   if (isError) return <Navigate to={"/404"} />;
 
-  if (data)
+  if (filter)
     return (
-      <div className="w-[90%] m-auto">
+      <div className="w-[90%] m-auto pb-10">
         <div className="w-full flex gap-5 mb-8">
           <Button
             route="/"
@@ -36,15 +42,15 @@ function ProfileView() {
           >
             Volver
           </Button>
-          <Search></Search>
+          <Search setFilter={setFilter}></Search>
         </div>
         <div className="grid gap-6  sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 mb-12">
-          {data.length === 0 ? (
+          {filter.length === 0 ? (
             <p className="text-center text-gray-300 text-2xl mt-20">
               No hay usuarios
             </p>
           ) : (
-            data.map((item) => (
+            filter.map((item) => (
               <div
                 key={item.id}
                 className="flex flex-col items-center bg-primary p-6 shadow-md rounded-lg space-y-4 w-full"
