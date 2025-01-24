@@ -17,6 +17,7 @@ export const authSchema = z.object({
   roles: z.string(),
   service: z.string(),
   token: z.string(),
+  urlInstagram: z.string(),
 });
 
 type Auth = z.infer<typeof authSchema>;
@@ -33,6 +34,7 @@ export type UserRegistrationForm = Pick<
   | "password"
   | "confirmation_password"
   | "service"
+  | "urlInstagram"
 >;
 export type ConfirmToken = Pick<Auth, "token">;
 
@@ -52,6 +54,8 @@ export const userSchema = z.object({
   state: z.string(),
   localities: z.string(),
   country: z.string(),
+  category: z.array(z.string()),
+  urlInstagram: z.string(),
 });
 
 export type User = z.infer<typeof userSchema>;

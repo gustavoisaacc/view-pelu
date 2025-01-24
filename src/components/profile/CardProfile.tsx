@@ -2,6 +2,8 @@ import { Badge } from "../Badge";
 import { UserClient } from "../../schema/auth";
 import CardContainer from "../CardContainer";
 import ImageProfile from "./ImageProfile";
+import { Instagram, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 
 type CardProfileType = {
   data: UserClient;
@@ -20,21 +22,29 @@ function CardProfile({ data }: CardProfileType) {
           <h3 className="text-lg text-black font-medium mt-1 text-center">
             Profesión: {data.user.service}
           </h3>
-          <p className="text-sm text-black mt-2">
-            <span className="font-semibold text-center">Contacto:</span>{" "}
+          <p className="text-sm text-black mt-2 flex justify-center items-start ">
+            <span className="font-semibold text-center mr-1">
+              <Phone className="w-5 h-5" />
+            </span>
+            {"         "}
             {data.user.phone}
           </p>
         </div>
+        <div className="mt-5">
+          <Link
+            to={`${data.user.urlInstagram}`}
+            className="flex place-content-center"
+          >
+            <Instagram className="w-5 h-5" />
+            <p className="ml-1">ver mis trabajos</p>
+          </Link>
+        </div>
         <div className="flex flex-wrap justify-center gap-12 mt-4 text-white">
-          <Badge variant="default" className="w-36 h-12 flex justify-center">
-            Cortes de Mujeres
-          </Badge>
-          <Badge variant="default" className="w-36 h-12 flex justify-center">
-            Cortes de Hombres
-          </Badge>
-          <Badge variant="default" className="w-36 h-12 flex justify-center">
-            Colometria
-          </Badge>
+          {data.user.category.map((items) => (
+            <Badge variant="default" className="w-36 h-12 flex justify-center">
+              {items}
+            </Badge>
+          ))}
         </div>
       </CardContainer>
     </div>

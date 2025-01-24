@@ -38,6 +38,7 @@ export default function RegisterView() {
     password: "",
     confirmation_password: "",
     service: "",
+    urlInstagram: "",
   };
 
   const navigate = useNavigate();
@@ -105,7 +106,7 @@ export default function RegisterView() {
             className=" bg-white mt-10"
             noValidate
           >
-            <div className="p-10 space-y-8">
+            <div className="space-y-8">
               <div className="bg-primary h-auto w-full p-5 ">
                 <h1 className="text-4xl font-black text-white">Crear Cuenta</h1>
                 <p className="text-2xl font-light  text-white mt-5">
@@ -116,183 +117,199 @@ export default function RegisterView() {
                   </span>
                 </p>
               </div>
-              <div className="flex flex-col gap-5">
-                <label className="font-normal text-lg" htmlFor="email">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="Email de Registro"
-                  className="w-full p-3  border-primary border"
-                  {...register("email", {
-                    required: "El Email de registro es obligatorio",
-                    pattern: {
-                      value: /\S+@\S+\.\S+/,
-                      message: "E-mail no válido",
-                    },
-                  })}
-                />
-                {errors.email && (
-                  <ErrorMessage>{errors.email.message}</ErrorMessage>
-                )}
-              </div>
+              <div className="p-10">
+                <div className="flex flex-col gap-5">
+                  <label className="font-normal text-lg" htmlFor="email">
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="Email de Registro"
+                    className="w-full p-3  border-primary border"
+                    {...register("email", {
+                      required: "El Email de registro es obligatorio",
+                      pattern: {
+                        value: /\S+@\S+\.\S+/,
+                        message: "E-mail no válido",
+                      },
+                    })}
+                  />
+                  {errors.email && (
+                    <ErrorMessage>{errors.email.message}</ErrorMessage>
+                  )}
+                </div>
 
-              <div className="flex flex-col gap-5">
-                <label className="font-normal text-lg">Nombre</label>
-                <input
-                  type="name"
-                  placeholder="Nombre de Registro"
-                  className="w-full p-3  border-primary border"
-                  {...register("name", {
-                    required: "El Nombre de usuario es obligatorio",
-                  })}
-                />
-                {errors.name && (
-                  <ErrorMessage>{errors.name.message}</ErrorMessage>
-                )}
-              </div>
-              <div className="flex flex-col gap-5">
-                <label className="font-normal text-lg">Apellido</label>
-                <input
-                  type="lastName"
-                  placeholder="Apellido de Registro"
-                  className="w-full p-3  border-primary border"
-                  {...register("lastName", {
-                    required: "El Apellido de usuario es obligatorio",
-                  })}
-                />
-                {errors.lastName && (
-                  <ErrorMessage>{errors.lastName.message}</ErrorMessage>
-                )}
-              </div>
-              <div className="flex flex-col gap-5">
-                <label className="font-normal text-lg">Celular</label>
-                <input
-                  type="phone"
-                  placeholder="Celular de Registro"
-                  className="w-full p-3  border-primary border"
-                  {...register("phone", {
-                    required: "El Celular de usuario es obligatorio",
-                  })}
-                />
-                {errors.phone && (
-                  <ErrorMessage>{errors.phone.message}</ErrorMessage>
-                )}
-              </div>
-              <div className="flex flex-col gap-5 relative overflow-visible">
-                <label className="font-normal text-lg">Provincia</label>
-                <select
-                  {...register("state")}
-                  className={`w-full p-3 border border-primary rounded-md bg-white text-gray-800 shadow-sm focus:ring-2 focus:ring-primary focus:outline-none transition-all overflow-hidden text-ellipsis  ${
-                    isBrave ? "custom-brave-fix" : ""
-                  }`}
-                  onChange={(e) => handelChange(e)}
-                >
-                  <option value="">Seleccione una provincia</option>
-                  {state?.provincias?.map((item) => (
-                    <option key={item.id} value={item.nombre}>
-                      {item.nombre}
-                    </option>
-                  ))}
-                </select>
-                {errors.state && (
-                  <ErrorMessage>{errors.state.message}</ErrorMessage>
-                )}
-              </div>
+                <div className="flex flex-col gap-5">
+                  <label className="font-normal text-lg">Nombre</label>
+                  <input
+                    type="name"
+                    placeholder="Nombre de Registro"
+                    className="w-full p-3  border-primary border"
+                    {...register("name", {
+                      required: "El Nombre de usuario es obligatorio",
+                    })}
+                  />
+                  {errors.name && (
+                    <ErrorMessage>{errors.name.message}</ErrorMessage>
+                  )}
+                </div>
+                <div className="flex flex-col gap-5">
+                  <label className="font-normal text-lg">Apellido</label>
+                  <input
+                    type="lastName"
+                    placeholder="Apellido de Registro"
+                    className="w-full p-3  border-primary border"
+                    {...register("lastName", {
+                      required: "El Apellido de usuario es obligatorio",
+                    })}
+                  />
+                  {errors.lastName && (
+                    <ErrorMessage>{errors.lastName.message}</ErrorMessage>
+                  )}
+                </div>
+                <div className="flex flex-col gap-5">
+                  <label className="font-normal text-lg">Celular</label>
+                  <input
+                    type="phone"
+                    placeholder="Celular de Registro"
+                    className="w-full p-3  border-primary border"
+                    {...register("phone", {
+                      required: "El Celular de usuario es obligatorio",
+                    })}
+                  />
+                  {errors.phone && (
+                    <ErrorMessage>{errors.phone.message}</ErrorMessage>
+                  )}
+                </div>
+                <div className="flex flex-col gap-5 relative overflow-visible">
+                  <label className="font-normal text-lg">Provincia</label>
+                  <select
+                    {...register("state")}
+                    className={`w-full p-3 border border-primary rounded-md bg-white text-gray-800 shadow-sm focus:ring-2 focus:ring-primary focus:outline-none transition-all overflow-hidden text-ellipsis  ${
+                      isBrave ? "custom-brave-fix" : ""
+                    }`}
+                    onChange={(e) => handelChange(e)}
+                  >
+                    <option value="">Seleccione una provincia</option>
+                    {state?.provincias?.map((item) => (
+                      <option key={item.id} value={item.nombre}>
+                        {item.nombre}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.state && (
+                    <ErrorMessage>{errors.state.message}</ErrorMessage>
+                  )}
+                </div>
 
-              <div className="flex flex-col gap-5">
-                <label className="font-normal text-lg">Localidad</label>
-                <select
-                  {...register("localities")}
-                  className="w-full p-3  border-primary border outline-none"
-                >
-                  <option value="">Seleccione una localidad</option>
-                  {localities?.map((item) => (
-                    <option key={item.id} value={item.nombre}>
-                      {item.nombre}
-                    </option>
-                  ))}
-                </select>
-                {errors.localities && (
-                  <ErrorMessage>{errors.localities.message}</ErrorMessage>
-                )}
-              </div>
-              <div className="flex flex-col gap-5">
-                <label className="font-normal text-lg">Dirección</label>
-                <input
-                  type="direction"
-                  placeholder="Dirección de Registro"
-                  className="w-full p-3  border-primary border"
-                  {...register("direction", {
-                    required: "El Direccion de usuario es obligatorio",
-                  })}
-                />
-                {errors.direction && (
-                  <ErrorMessage>{errors.direction.message}</ErrorMessage>
-                )}
-              </div>
-              <div className="flex flex-col gap-5">
-                <label className="font-normal text-lg">Profesión</label>
-                <input
-                  type="service"
-                  placeholder="Profesión de Registro"
-                  className="w-full p-3  border-primary border"
-                  {...register("service", {
-                    required: "El Servicio de usuario es obligatorio",
-                  })}
-                />
-                {errors.service && (
-                  <ErrorMessage>{errors.service.message}</ErrorMessage>
-                )}
-              </div>
-              <div className="flex flex-col gap-5">
-                <label className="font-normal text-lg">Contraseña</label>
+                <div className="flex flex-col gap-5">
+                  <label className="font-normal text-lg">Localidad</label>
+                  <select
+                    {...register("localities")}
+                    className="w-full p-3  border-primary border outline-none"
+                  >
+                    <option value="">Seleccione una localidad</option>
+                    {localities?.map((item) => (
+                      <option key={item.id} value={item.nombre}>
+                        {item.nombre}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.localities && (
+                    <ErrorMessage>{errors.localities.message}</ErrorMessage>
+                  )}
+                </div>
+                <div className="flex flex-col gap-5">
+                  <label className="font-normal text-lg">Dirección</label>
+                  <input
+                    type="direction"
+                    placeholder="Dirección de Registro"
+                    className="w-full p-3  border-primary border"
+                    {...register("direction", {
+                      required: "El Direccion de usuario es obligatorio",
+                    })}
+                  />
+                  {errors.direction && (
+                    <ErrorMessage>{errors.direction.message}</ErrorMessage>
+                  )}
+                </div>
+                <div className="flex flex-col gap-5">
+                  <label className="font-normal text-lg">Profesión</label>
+                  <input
+                    type="service"
+                    placeholder="Profesión de Registro"
+                    className="w-full p-3  border-primary border"
+                    {...register("service", {
+                      required: "El Servicio de usuario es obligatorio",
+                    })}
+                  />
+                  {errors.service && (
+                    <ErrorMessage>{errors.service.message}</ErrorMessage>
+                  )}
+                </div>
+                <div className="flex flex-col gap-5">
+                  <label className="font-normal text-lg">Instagram</label>
+                  <input
+                    type="text"
+                    placeholder="Url perfil Instagram"
+                    className="w-full p-3  border-primary border"
+                    {...register("urlInstagram", {
+                      required: "La url de Instagram es obligatorio",
+                    })}
+                  />
+                  {errors.service && (
+                    <ErrorMessage>{errors.service.message}</ErrorMessage>
+                  )}
+                </div>
+                <div className="flex flex-col gap-5">
+                  <label className="font-normal text-lg">Contraseña</label>
 
-                <input
-                  type="password"
-                  placeholder="Contraseña de Registro"
-                  className="w-full p-3  border-primary border"
-                  {...register("password", {
-                    required: "El Password es obligatorio",
-                    minLength: {
-                      value: 8,
-                      message: "El Password debe ser mínimo de 8 caracteres",
-                    },
-                  })}
-                />
-                {errors.password && (
-                  <ErrorMessage>{errors.password.message}</ErrorMessage>
-                )}
-              </div>
+                  <input
+                    type="password"
+                    placeholder="Contraseña de Registro"
+                    className="w-full p-3  border-primary border"
+                    {...register("password", {
+                      required: "El Password es obligatorio",
+                      minLength: {
+                        value: 8,
+                        message: "El Password debe ser mínimo de 8 caracteres",
+                      },
+                    })}
+                  />
+                  {errors.password && (
+                    <ErrorMessage>{errors.password.message}</ErrorMessage>
+                  )}
+                </div>
 
-              <div className="flex flex-col gap-5">
-                <label className="font-normal text-lg">
-                  Repetir Contraseña
-                </label>
+                <div className="flex flex-col gap-5">
+                  <label className="font-normal text-lg">
+                    Repetir Contraseña
+                  </label>
 
-                <input
-                  id=" confirmation_password"
-                  type="password"
-                  placeholder="Repite contraseña de Registro"
-                  className="w-full p-3  border-primary border"
-                  {...register("confirmation_password", {
-                    required: "Repetir Password es obligatorio",
-                    validate: (value) =>
-                      value === password || "Los Passwords no son iguales",
-                  })}
-                />
+                  <input
+                    id=" confirmation_password"
+                    type="password"
+                    placeholder="Repite contraseña de Registro"
+                    className="w-full p-3  border-primary border"
+                    {...register("confirmation_password", {
+                      required: "Repetir Password es obligatorio",
+                      validate: (value) =>
+                        value === password || "Los Passwords no son iguales",
+                    })}
+                  />
 
-                {errors.confirmation_password && (
-                  <ErrorMessage>
-                    {errors.confirmation_password.message}
-                  </ErrorMessage>
-                )}
+                  {errors.confirmation_password && (
+                    <ErrorMessage>
+                      {errors.confirmation_password.message}
+                    </ErrorMessage>
+                  )}
+                </div>
               </div>
               <input
                 type="submit"
                 value="Registrarme"
-                className=" bg-primary hover:bg-lightpurple w-full p-3  text-white font-black  text-xl cursor-pointer mt-10"
+                className=" bg-primary hover:bg-primary/85 w-full p-3  text-white font-black  text-xl cursor-pointer mt-10"
               />
             </div>
           </form>
