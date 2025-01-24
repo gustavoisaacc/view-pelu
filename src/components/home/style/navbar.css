@@ -1,37 +1,120 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+.navbar {
+  background-color: #951abe;
+  color: white;
+  padding: 1rem;
+  width: 100%; 
+}
+
+.navbar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.img-nav {
+  max-width: 30px;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger .bar {
+  background-color: white;
+  height: 4px;
+  width: 25px;
+  margin: 3px 0;
+}
+
+.navbar-menu {
+  display: none;
+  flex-direction: column;
+  background-color: #951abe;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%);
+  z-index: 1000;
+}
+
+.navbar-menu.open {
+  display: flex;
+  transform: translateX(0); /* Hace que el menú se desplace desde el costado */
+}
+
+.nav-item {
+  margin: 20px 0;
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.nav-item:hover {
+  text-decoration: underline;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 1001; /* Asegura que el botón de cerrar esté sobre el menú */
+}
+
+@media (min-width: 1024px) {
+  .hamburger {
+    display: none;
   }
-  
+
   .navbar {
-    background-color: #951abe;
-    color: white;
-    padding: 1rem;
-    width: 100%; 
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    padding: 1rem 2rem;
   }
-  
+
   .navbar-header {
+    flex-grow: 1;
+  }
+
+  .navbar-menu {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    position: static;
+    transform: none;
+    background: none;
+    padding: 0;
+    justify-content: flex-end;
+    width: auto;
   }
-  
-  .img-nav{
-    max-width: 30px;
+
+  .nav-item {
+    margin: 0 15px;
+    font-size: 1rem;
   }
-  
-  @media (min-width: 1024px) {
-    .navbar {
-      padding: 1rem 2rem; 
-    }
-  
-    .navbar-header {
-      justify-content: space-between; 
-    }
-  
-    .img-nav {
-      max-width: 50px;
-    }
+
+  .img-nav {
+    max-width: 50px;
   }
+
+  .close-button {
+    display: none;
+  }
+}

@@ -14,9 +14,9 @@ const CardParticular = ({ title, description, backgroundImage }: CardParticularP
     <div className="card-unica" style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className="card-unica-content">
         <h2 className="card-unica-title">{title}</h2>
-        <p className="card-unica-description">{description}</p>
+        <p className="card-unica-description" id="promo">{description}</p>
         <Link to="/cita">
-        <button className="card-unica-button">Sacar turno</button>
+        <button className="card-unica-button">Ver</button>
         </Link>
       </div>
     </div>
