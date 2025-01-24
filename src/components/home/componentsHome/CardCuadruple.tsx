@@ -1,39 +1,45 @@
 
 import "../style/cardCuadruple.css";
-import imagen1 from "../image/tajetas.png";
-import imagen2 from "../image/usuario.png";
-import imagen3 from "../image/agenda.png";
+import imagen1 from "../image/cortePelo.png";
+import imagen2 from "../image/tinte.png";
+import imagen3 from "../image/hidratante.png";
 import imagen4 from "../image/pelo.png";
+import imagen5 from "../image/informacion.png";
 import { Link } from "react-router-dom";
 
 const CardCuadruple = () => {
   return (
-    <div className="cards-grid">
+    <>
+    <div className="title-card" id="informacion"><h1>Nuestros Servicios</h1></div>
+    <div className="cards-grid" >
       <div className="card">
         <img src={imagen1} alt="Imagen 1" className="card-image" />
-        <h2 className="card-title">Forma de Pagos</h2>
-        <p></p>
+        <h2 className="card-title">Cortes de cabello</h2>
+        <p>Ofrecemos cortes modernos y clasicos para todos los estilos y edades.</p>
       </div>
       <div className="card">
         <Link to="profile">
         <img src={imagen2} alt="Imagen 2" className="card-image" />
-        <h2 className="card-title">Perfil de Peluquero</h2>
-        <p></p>
+        <h2 className="card-title">Colorimetria</h2>
+        <p>Desde tintes naturales hasta colores vibrantes, nuestros expertos te daran el look que deseas.</p>
         </Link>
       </div>
       <div className="card">
         <Link to="/cita">
         <img src={imagen3} alt="Imagen 3" className="card-image" />
-        <h2 className="card-title">Sacar turno</h2>
-        <p></p>
+        <h2 className="card-title">Tratamientos</h2>
+        <p>Revitaliza tu cabello con nuestros tratamientos de hidratacion, reparacion y brillo.</p>
         </Link>
       </div>
       <div className="card">
-        <img src={imagen4}alt="Imagen 4" className="card-image" />
-        <h2 className="card-title">Recomendacion!</h2>
-        <p></p>
+        <img src={imagen5}alt="Imagen 4" className="card-image" />
+        <h2 className="card-title">Informacion</h2>
+        <p>Lunes a Viernes de 08:00 AM - 22:OO PM
+           Sabado y Domingo de 10:00 AM - 20:00 PM
+        </p>
       </div>
     </div>
+    </>
   );
 };
 
