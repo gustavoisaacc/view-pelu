@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className={`navbar-menu ${isOpen ? 'open' : ''}`}>
         <button className="close-button" onClick={() => setIsOpen(false)}>×</button>
         <a href="#promo" className="nav-item" onClick={() => setIsOpen(false)}>Promos</a>
-        <a href="#informacion" className="nav-item" onClick={() => setIsOpen(false)}>Información</a>
+        <Link to="/Informacion" className="nav-item">Informacion</Link>
         <Link to="/profile" className="nav-item">Profesionales</Link>
       </div>
     </nav>

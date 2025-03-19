@@ -17,6 +17,7 @@ import PeluqueroDetailView from "./view/PeluqueroDetailView";
 import NotFound from "./components/home/pages/NotFound";
 import Home from "./components/home/pages/Home";
 import DetailView from "./view/DetailView";
+import Informacion from "./components/home/pages/Info"
 
 function Router() {
   return (
@@ -48,6 +49,7 @@ function Router() {
           <Route path="/auth/new-password" element={<NewPasswordView />} />
         </Route>
         <Route path="*" element={<NotFound />} />
+        <Route path="Informacion" element={<Informacion />} />
       </Routes>
     </BrowserRouter>
   );
