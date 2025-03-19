@@ -23,7 +23,6 @@ export function CenterOnZoom({ location }: { location: Location }) {
 }
 
 export function MapClient({ location, address }: MapProps) {
-  console.log("🚀 ~ MapClient ~ location:", location);
   return (
     <MapContainer
       center={[Number(location.lat), Number(location.lon)]}

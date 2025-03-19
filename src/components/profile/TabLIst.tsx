@@ -26,7 +26,6 @@ const TabList = ({ selectedTab, data }: TabListProps) => {
   useEffect(() => {
     const el = async () => {
       const res = await getCoordinatesLocationIQ(data.user);
-      console.log("🚀 ~ el ~ res:", res);
       setLocation(res);
     };
     el();
