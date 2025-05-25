@@ -20,8 +20,7 @@ function LayoutApp() {
   if (data)
     return (
       <div className="min-h-screen flex flex-col  bg-lightpurple">
-        <header className="bg-darkpurple ">
-          <section className="max-w-screen-2xl m-auto flex flex-col lg:flex-row items-center justify-between">
+          <section className="w-full lg:max-w-screen-2xl m-auto flex flex-col lg:flex-row items-center justify-between">
             <div className="grid place-content-center">
               <div className="w-64">
                 <Link to="/dashboard">
@@ -33,7 +32,6 @@ function LayoutApp() {
               <NavMenu name={data.name} />
             </nav>
           </section>
-        </header>
 
         {/* Asegúrate de que el main tenga un ancho del 100% */}
         <main className="flex-grow w-full max-w-screen-2xl m-auto">

@@ -5,7 +5,6 @@ import imagen2 from "../image/tinte.png";
 import imagen3 from "../image/hidratante.png";
 import imagen4 from "../image/pelo.png";
 import imagen5 from "../image/informacion.png";
-import { Link } from "react-router-dom";
 
 const CardCuadruple = () => {
   return (
@@ -18,18 +17,14 @@ const CardCuadruple = () => {
         <p>Ofrecemos cortes modernos y clasicos para todos los estilos y edades.</p>
       </div>
       <div className="card">
-        <Link to="profile">
         <img src={imagen2} alt="Imagen 2" className="card-image" />
         <h2 className="card-title">Colorimetria</h2>
         <p>Desde tintes naturales hasta colores vibrantes, nuestros expertos te daran el look que deseas.</p>
-        </Link>
       </div>
       <div className="card">
-        <Link to="/cita">
         <img src={imagen3} alt="Imagen 3" className="card-image" />
         <h2 className="card-title">Tratamientos</h2>
         <p>Revitaliza tu cabello con nuestros tratamientos de hidratacion, reparacion y brillo.</p>
-        </Link>
       </div>
       <div className="card">
         <img src={imagen5}alt="Imagen 4" className="card-image" />

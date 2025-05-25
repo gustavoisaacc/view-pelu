@@ -21,7 +21,7 @@ function Dashboard() {
         <h1 className="text-center py-4 text-4xl font-semibold text-white">
           Panel de Administracion
         </h1>
-        <section className="flex flex-col lg:flex-row gap-5">
+        <section className="flex flex-col lg:flex-row gap-5 w-full lg:mx-auto">
           <Button route="/cita" colorType="primary">
             Crear cita
           </Button>

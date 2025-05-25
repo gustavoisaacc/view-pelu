@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import "../style/navbar.css";
-import img2 from "../image/acceso.png";
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -9,9 +8,6 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-header">
-        <Link to="/dashboard">
-          <img src={img2} alt="Logo" className="img-nav" />
-        </Link>
         <div className="hamburger" onClick={() => setIsOpen(!isOpen)}>
           <div className="bar"></div>
           <div className="bar"></div>

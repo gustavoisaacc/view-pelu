@@ -4,10 +4,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../style/carrusel.css"
-import img1 from "../image/slider1.png"
-import img2 from "../image/slider2.png"
-import img3 from "../image/slider3.png"
-import img4 from "../image/slider4.png"
+import img1 from "../image/carru1.jpg"
+import img2 from "../image/carru2.jpg"
+import img3 from "../image/carru3.jpg"
+import img4 from "../image/carru4.jpg"
 
 const Carrusel = () => {
   const settings = {
